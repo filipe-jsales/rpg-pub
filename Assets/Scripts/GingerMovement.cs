@@ -15,11 +15,13 @@ public class GingerMovement : MonoBehaviour
     BoxCollider2D boxCollider2D;
     public LayerMask solidObjectsLayer;
     public LayerMask interactablesLayer;
+    float gravityScaleAtStart;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        gravityScaleAtStart = rigidBody.gravityScale;
     }
 
     public void HandleUpdate()
@@ -52,7 +54,11 @@ public class GingerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!boxCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects"))) return;
+        bool isOnGround = boxCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects"));
+        bool isOnLadder = boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+
+        if (!isOnGround && !isOnLadder) return;
+
         if (value.isPressed)
         {
             rigidBody.velocity += new Vector2(0f, jumpSpeed);
@@ -93,8 +99,17 @@ public class GingerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        if (!boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"))) return;
+        if (!boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            rigidBody.gravityScale = gravityScaleAtStart;
+            animator.SetBool("isClimbing", false);
+            return;
+        };
         Vector2 climbVelocity = new Vector2(rigidBody.velocity.x, moveInput.y * climbSpeed);
         rigidBody.velocity = climbVelocity;
+        rigidBody.gravityScale = 0f;
+
+        bool playerHasVerticalSpeed = Mathf.Abs(rigidBody.velocity.y) > Mathf.Epsilon;
+        animator.SetBool("isClimbing", playerHasVerticalSpeed);
     }
 }

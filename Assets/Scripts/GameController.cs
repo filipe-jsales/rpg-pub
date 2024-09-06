@@ -5,7 +5,6 @@ using UnityEngine;
 public enum GameState { FreeRoam, Dialog, Battle };
 public class GameController : MonoBehaviour
 {
-    [SerializeField] PlayerController playerController;
 
     GameState state;
     
@@ -35,7 +34,7 @@ public class GameController : MonoBehaviour
     {
         if (state == GameState.FreeRoam)
         {
-            playerController.HandleUpdate();
+            //gingerMovement.Update();
         }
         else if (state == GameState.Dialog)
         {

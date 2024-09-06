@@ -1415,7 +1415,61 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      character green_0: 178072272532731228
+      character green_1: -7449618861275369131
+      character green_10: 716826154338791322
+      character green_11: -3451916003166506605
+      character green_12: 3046928348794204058
+      character green_13: 2749521544725640289
+      character green_14: 3065662385471236730
+      character green_15: 5296284011761374129
+      character green_16: -8579043733139192908
+      character green_17: -4885164159089235723
+      character green_18: 2913803095240777661
+      character green_19: -4751850884663511845
+      character green_2: 2155247073474788533
+      character green_20: 2202509421478087047
+      character green_21: -3568400087264112823
+      character green_22: 9145134731825843490
+      character green_23: -1825375273518675180
+      character green_24: 8761021679902481026
+      character green_25: -8819275512879343168
+      character green_26: -1077873841810389234
+      character green_27: -8444732110283873609
+      character green_28: -4986429226072922650
+      character green_29: -2523176794611775399
+      character green_3: -2403100632902025596
+      character green_30: -8711658103801365783
+      character green_31: -4764880675940532452
+      character green_32: 2590428369496643768
+      character green_33: -6097173015835641668
+      character green_34: -864265805162495260
+      character green_35: -300764163262351661
+      character green_36: 4496201495526247800
+      character green_37: -7827594826388367746
+      character green_38: 7382968544525153114
+      character green_39: 5462738263389253752
+      character green_4: 1045594147588315758
+      character green_40: -2812408635652446518
+      character green_41: -3137448014454638460
+      character green_42: -1349331399474387427
+      character green_43: -215930608057340135
+      character green_44: 6714270443188485893
+      character green_45: -1315210041695730195
+      character green_46: -764993770544184641
+      character green_47: -6979431033263907771
+      character green_48: -8767313161324689787
+      character green_49: -7748453871129307433
+      character green_5: -4639483513632747057
+      character green_50: 2463825433022754493
+      character green_51: 6606704612729865318
+      character green_52: -6217412740845399178
+      character green_53: 1219560649541068820
+      character green_6: -957115814890047034
+      character green_7: 4225658563988372262
+      character green_8: -8438099246362812503
+      character green_9: -6364391805451615014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

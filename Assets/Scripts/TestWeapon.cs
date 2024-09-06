@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿using Abstractions;
 public class TestWeapon : Weapon
 {
     

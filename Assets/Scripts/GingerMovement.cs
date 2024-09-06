@@ -12,7 +12,8 @@ public class GingerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 5.0f;
 
     Animator animator;
-    BoxCollider2D boxCollider2D;
+    CapsuleCollider2D bodyCollider2D;
+    BoxCollider2D feetCollider2D;
     public LayerMask solidObjectsLayer;
     public LayerMask interactablesLayer;
     float gravityScaleAtStart;
@@ -20,7 +21,8 @@ public class GingerMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
+        bodyCollider2D = GetComponent<CapsuleCollider2D>();
+        feetCollider2D = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = rigidBody.gravityScale;
     }
 
@@ -54,13 +56,14 @@ public class GingerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        bool isOnGround = boxCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects"));
-        bool isOnLadder = boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        bool isOnGround = feetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects"));
+        bool isOnLadder = feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"));
 
         if (!isOnGround && !isOnLadder) return;
 
         if (value.isPressed)
         {
+            Debug.Log("jumped");
             rigidBody.velocity += new Vector2(0f, jumpSpeed);
         }
     }
@@ -81,7 +84,7 @@ public class GingerMovement : MonoBehaviour
         var interactPosition = (Vector2)transform.position + facingDirection * 0.5f;
 
         Debug.DrawLine(transform.position, interactPosition, Color.red, 1f);
-
+        
         int interactablesLayerMask = LayerMask.GetMask("Interactable"); 
 
         var collider = Physics2D.OverlapCircle(interactPosition, 0.5f, interactablesLayerMask);
@@ -99,7 +102,7 @@ public class GingerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        if (!boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!bodyCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             rigidBody.gravityScale = gravityScaleAtStart;
             animator.SetBool("isClimbing", false);

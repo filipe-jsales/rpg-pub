@@ -14,7 +14,7 @@ TagManager:
   - 
   - SolidObjects
   - Interactable
-  - 
+  - Climbing
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2650709201
+    locked: 0
+  - name: Climbing
+    uniqueID: 333784293
     locked: 0
   - name: Player
     uniqueID: 1512496515

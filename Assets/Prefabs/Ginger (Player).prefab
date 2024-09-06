@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7461845520550527193}
   - component: {fileID: 8818547129240801833}
   - component: {fileID: 499514063071471621}
-  - component: {fileID: 7836834022127733227}
+  - component: {fileID: 240942312250107270}
   - component: {fileID: 7424465036724784313}
   - component: {fileID: 3877336196673574457}
+  - component: {fileID: 3860760323250530005}
   m_Layer: 3
   m_Name: Ginger (Player)
   m_TagString: Untagged
@@ -140,8 +141,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &7836834022127733227
-BoxCollider2D:
+--- !u!70 &240942312250107270
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -174,18 +175,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.013364315, y: -0.0626415}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6875, y: 0.875}
-    newSize: {x: 0.6875, y: 0.875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.700469, y: 0.91612625}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.012424469, y: 0}
+  m_Size: {x: 0.541955, y: 0.875}
+  m_Direction: 0
 --- !u!114 &7424465036724784313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,3 +229,49 @@ MonoBehaviour:
   interactablesLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!61 &3860760323250530005
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055711027711481409}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.02716136, y: -0.41}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6875, y: 0.875}
+    newSize: {x: 0.6875, y: 0.875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.48831606, y: 0.13258743}
+  m_EdgeRadius: 0

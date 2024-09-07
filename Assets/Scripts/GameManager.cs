@@ -21,20 +21,31 @@ public class GameManager : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(LoadNexLevel());
+        StartCoroutine(LoadNextLevel());
     }
 
-    IEnumerator LoadNexLevel()
+    IEnumerator LoadNextLevel()
     {
         yield return new WaitForSeconds(levelLoadDelay);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("End of game reached! Restarting...");
+            RestartLevel(); 
+        }
+        else
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
     }
 
-    public void RestartLevel()
+    void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
+
 
     public void QuitGame()
     {

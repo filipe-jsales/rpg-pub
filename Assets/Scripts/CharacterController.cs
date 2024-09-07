@@ -111,6 +111,7 @@ public class CharacterController : MonoBehaviour
             isAlive = false;
             animator.SetTrigger("isDying");
             playerRigidBody.velocity = deathKnockback;
+            FindObjectOfType<GameManager>().ProcessPlayerDamageTaken();
         }
     }
 }

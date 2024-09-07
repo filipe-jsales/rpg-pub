@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] float levelLoadDelay = 1f;
-
+    //[SerializeField] float levelLoadDelay = 1f;
+    [SerializeField] int playerLives = 3;
     private void Awake()
     {
         if (instance == null)
@@ -19,33 +19,32 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void OnTriggerEnter2D(Collider2D collision)
+    public void ProcessPlayerDamageTaken()
     {
-        StartCoroutine(LoadNextLevel());
-    }
-
-    IEnumerator LoadNextLevel()
-    {
-        yield return new WaitForSeconds(levelLoadDelay);
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-
-        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        if (playerLives > 1)
         {
-            Debug.Log("End of game reached! Restarting...");
-            RestartLevel(); 
+            TakeLife();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            ResetGameSession();
         }
     }
 
-    void RestartLevel()
+    void ResetGameSession()
     {
         SceneManager.LoadScene(0);
+        Destroy(gameObject);
     }
 
+    public void TakeLife()
+    {
+        playerLives--;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+        //TODO: change the logic to no longer reset the level, but instead add an animation of the player taking damage and being invincible for a few seconds
+    }
 
     public void QuitGame()
     {

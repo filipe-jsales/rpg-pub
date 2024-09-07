@@ -25,15 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Header("Weapon")]
     private GameObject weaponObject;
     
-    [SerializeField]
-    [Header("Armor Information")]
-    private double armorDurability;
-    
-    [SerializeField]
-    private double armorDamageResistance;
-    
-    [SerializeField]
-    private int armorPoise;
+    [SerializeField] [Header("Armor")]
+    private GameObject armorObject;
 
     private string _previousWeaponName;
 
@@ -49,11 +42,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // TODO: verificar impacto de usar get component assim
+        // TODO: verificar impacto de usar get component assim provavelmente um UnityEvent
         var weaponPrefab = weaponObject.GetComponent<WeaponPrefab>();
         var currentWeaponName = weaponPrefab.GetWeapon().Name;
         if (_previousWeaponName != currentWeaponName)
         {
+            _previousWeaponName = currentWeaponName;
             var animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
         }
@@ -71,8 +65,7 @@ public class PlayerController : MonoBehaviour
     private CharacterImpl GeneratePlayerFromParameters()
     {
         var weapon = weaponObject.GetComponent<WeaponPrefab>().GetWeapon();
-        // TODO: use prefab armors
-        var armor = new ArmorImpl("test", armorDurability, armorDamageResistance, armorPoise);
+        var armor = armorObject.GetComponent<ArmorPrefab>().GetArmor();
         return new CharacterImpl(characterName, baseHealth, baseDamage, basePoise, armor, weapon);
     }
 }

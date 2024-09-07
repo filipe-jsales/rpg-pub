@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GingerMovement : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     Vector2 moveInput;
     Rigidbody2D playerRigidBody;

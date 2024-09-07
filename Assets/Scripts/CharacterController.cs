@@ -19,6 +19,10 @@ public class GingerMovement : MonoBehaviour
     public LayerMask interactablesLayer;
     float gravityScaleAtStart;
     bool isAlive = true;
+
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform firePoint;
+
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -64,6 +68,12 @@ public class GingerMovement : MonoBehaviour
             Debug.Log("jumped");
             playerRigidBody.velocity += new Vector2(0f, jumpSpeed);
         }
+    }
+
+    void OnFire(InputValue value)
+    {
+        if (!isAlive) { return; }
+        Instantiate(bulletPrefab, firePoint.position, transform.rotation);
     }
 
     void FlipSprite()

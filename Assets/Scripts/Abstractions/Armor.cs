@@ -12,6 +12,8 @@ namespace Abstractions
         public abstract double HandlePhysicalDamage(double damage);
         public abstract void HandlePoiseDamage(Weapon weapon);
 
+        public string Name { get; set; }
+
         public double HealthFactor
         {
             set => SetDurability(value);

@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GingerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private CharacterScriptableObject player;
+    
     Vector2 moveInput;
     Rigidbody2D playerRigidBody;
     [SerializeField] float runSpeed = 5.0f;

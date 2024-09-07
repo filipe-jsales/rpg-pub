@@ -4,6 +4,7 @@ namespace Abstractions
 {
     public abstract class Weapon : IRpgObject
     {
+        public string Name { get; set; }
         protected abstract void SetDurability(double value);
         protected abstract void SetDamage(double value);
         protected abstract void SetPoiseDamage(int value);

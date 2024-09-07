@@ -12431,6 +12431,32 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 1221942065}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!1 &2127064328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3055711027711481409, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
+  m_PrefabInstance: {fileID: 7043597000723698339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2127064329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127064328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7312d49d81af4335b6f4805c597e4e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
+  characterName: Ginger
+  baseHealth: 100
+  baseDamage: 10
+  basePoise: 5
+  weaponObject: {fileID: 3393616469692499582, guid: 8833374148371594b9b1c712a2855634, type: 3}
+  armorDurability: 1000
+  armorDamageResistance: 10
+  armorPoise: 20
 --- !u!1001 &7043597000723698339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12443,6 +12469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3877336196673574457, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
     - target: {fileID: 8668565491977607747, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.56
@@ -12486,7 +12516,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3055711027711481409, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2127064329}
   m_SourcePrefab: {fileID: 100100000, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

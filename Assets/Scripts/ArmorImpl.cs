@@ -1,15 +1,16 @@
 ﻿using Abstractions;
 using UnityEngine;
 
-public class TestArmor : Armor
+public class ArmorImpl : Armor
 {
     private enum ArmorCondition { Pristine, Damaged, Ineffective }
     private double Durability { get; set; }
     private double PhysicalResistance { get; set; }
     private int Poise { get; set; }
 
-    public TestArmor(double durability, double physicalResistance, int poise)
+    public ArmorImpl(string name, double durability, double physicalResistance, int poise)
     {
+        Name = name;
         Init(durability, physicalResistance, poise);
     }
 

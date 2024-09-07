@@ -192,6 +192,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &448540825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4656983030304895548, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
+  m_PrefabInstance: {fileID: 1627427028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &448540830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448540825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd0904d7812c534684b6305ff5bf2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLoadDelay: 1
 --- !u!1 &535348652
 GameObject:
   m_ObjectHideFlags: 0
@@ -10976,11 +10994,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 637043234151028583, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.49
+      value: 4.55
       objectReference: {fileID: 0}
     - target: {fileID: 637043234151028583, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: 637043234151028583, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11018,10 +11036,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7873234079965622737, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4656983030304895548, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 448540830}
   m_SourcePrefab: {fileID: 100100000, guid: 4fcbb9dc4ee420849828d7f374830292, type: 3}
 --- !u!1001 &623604931976861334
 PrefabInstance:
@@ -11055,6 +11077,10 @@ PrefabInstance:
       propertyPath: m_AnimatedTarget
       value: 
       objectReference: {fileID: 1304394673}
+    - target: {fileID: 4940218281060209606, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5868495219936132562, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
       propertyPath: m_Name
       value: Cameras

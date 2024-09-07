@@ -17,6 +17,8 @@ namespace Abstractions
 
         public string Name { get; set; }
 
+        public abstract double GetHealth();
+
         public abstract double OnHit(Armor armor);
         public abstract void OnHitTaken(Character attacker);
 

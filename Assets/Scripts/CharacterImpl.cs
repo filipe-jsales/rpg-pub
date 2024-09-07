@@ -21,6 +21,11 @@ public class CharacterImpl: Character
         EquippedWeapon = equippedWeapon;
     }
 
+    public override double GetHealth()
+    {
+        return Health;
+    }
+
     public override double OnHit(Armor armor)
     {
         EquippedWeapon.HandleDurabilityDamage(armor);

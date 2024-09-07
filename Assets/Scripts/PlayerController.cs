@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
         var animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
         player.Character = GeneratePlayerFromParameters();
-        Debug.Log(player.Character.Weapon.HandlePhysicalDamage(baseDamage));
     }
 
     private void Update()
@@ -51,15 +50,6 @@ public class PlayerController : MonoBehaviour
             var animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
         }
-        
-        // Character enemy = collider.GetComponent<Character>() TODO: lógica de pegar o Character do inimigo pelo collider?
-        // Se tiver atacando e tiver no hitbox da arma -> enemy.OnHitTaken(player);
-        // Se tiver no hitbox do player -> OnHitTaken(enemy);
-    }
-
-    public void OnHitTaken(Character enemy)
-    {
-        player.Character.OnHitTaken(enemy);
     }
     
     private CharacterImpl GeneratePlayerFromParameters()

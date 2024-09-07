@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &3055711027711481409
 GameObject:
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f0a108f02120f4e9f89ae8b2d0bf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
   runSpeed: 7
   jumpSpeed: 20
   climbSpeed: 5

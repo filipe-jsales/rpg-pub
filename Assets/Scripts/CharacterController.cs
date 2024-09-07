@@ -40,13 +40,15 @@ public class CharacterController : MonoBehaviour
         Run();
         FlipSprite();
         ClimbLadder();
-        OnPlayerDie();
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Debug.Log("Health: " + player.Character.GetHealth());
+        }
     }
     void OnMove(InputValue value)
     {
         if (!isAlive) { return; }
         moveInput = value.Get<Vector2>();
-        Debug.Log(moveInput);
     }
 
     void Run()
@@ -67,7 +69,6 @@ public class CharacterController : MonoBehaviour
 
         if (value.isPressed)
         {
-            Debug.Log("jumped");
             playerRigidBody.velocity += new Vector2(0f, jumpSpeed);
         }
     }
@@ -113,5 +114,21 @@ public class CharacterController : MonoBehaviour
             playerRigidBody.velocity = deathKnockback;
             FindObjectOfType<GameManager>().ProcessPlayerDamageTaken();
         }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "SolidObjects")))
+        {
+            var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
+            player.Character.OnHitTaken(enemyCharacter);
+            if (player.Character.GetHealth() <= 0)
+            {
+                isAlive = false;
+                animator.SetTrigger("isDying");
+                playerRigidBody.velocity = deathKnockback;
+                FindObjectOfType<GameManager>().ProcessPlayerDamageTaken();
+            }
+        };
     }
 }

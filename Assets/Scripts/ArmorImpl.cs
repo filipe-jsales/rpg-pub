@@ -26,19 +26,14 @@ public class ArmorImpl : Armor
 
     public override double HandlePhysicalDamage(double damage)
     {
-        Debug.Log("Attempted Damage: " + damage);
         var actualDamage = (damage - ArmorConditionBonus) * (PhysicalResistance / 100);
-        Debug.Log("Condition Bonus: " + ArmorConditionBonus);
-        Debug.Log("Resistance %: " + PhysicalResistance);
         Debug.Log("Actual Damage: " + actualDamage);
         return actualDamage < 0 ? 0 : actualDamage;
     }
     
     public override void HandleDurabilityDamage(double damage)
     {
-        Debug.Log("HandleDurabilityDamage");
         var durabilityDamage = HandlePhysicalDamage(damage) / 5;
-        Debug.Log("Durability Damage: " + durabilityDamage);
         SetDurability(Durability - durabilityDamage);
         Debug.Log("Durability after attack: " + Durability);
     }

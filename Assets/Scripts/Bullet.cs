@@ -22,9 +22,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies", "SolidObjects")))
+        if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
-            Debug.Log("Is touching enemies layer");
+            Destroy(other.gameObject);
         };
         Destroy(gameObject);
     }

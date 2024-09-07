@@ -19,4 +19,14 @@ public class Bullet : MonoBehaviour
     {
         bulletRigidBody.velocity = new Vector2(xSpeed, 0f);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies", "SolidObjects")))
+        {
+            Debug.Log("Is touching enemies layer");
+        };
+        Destroy(gameObject);
+    }
+
 }

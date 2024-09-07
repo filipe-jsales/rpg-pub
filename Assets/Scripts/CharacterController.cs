@@ -74,6 +74,7 @@ public class CharacterController : MonoBehaviour
 
     void OnFire(InputValue value)
     {
+        //FIXME: sometimes on enter play it is instatiating a bullet without firing click
         if (!isAlive) { return; }
         Instantiate(bulletPrefab, firePoint.position, transform.rotation);
     }

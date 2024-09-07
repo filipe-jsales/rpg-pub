@@ -1,14 +1,14 @@
 ﻿using Abstractions;
-public class TestWeapon : Weapon
+public class WeaponImpl : Weapon
 {
-    
     private double Durability { get; set; }
     private double Damage { get; set; }
     private int PoiseDamage { get; set; }
 
-    public TestWeapon(double durability, double damage, int poiseDamage)
-    {
-       Init(durability, damage, poiseDamage);
+    public WeaponImpl(string name, double durability, double damage, int poiseDamage)
+    { 
+        Name = name;
+        Init( durability, damage, poiseDamage);
     }
 
     private void Init(double durability, double damage, int poiseDamage)

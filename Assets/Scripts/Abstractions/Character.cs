@@ -2,7 +2,7 @@
 
 namespace Abstractions
 {
-    public abstract class Character : IRpgObject, IMagicalRpgObject, ILeveling, IEquipment
+    public abstract class Character : IRpgObject, IMagicalRpgObject, ILeveling, IEquipment, IHitDetectable
     {
         protected abstract void SetHealth(double value);
         protected abstract void SetBaseDamage(double value);
@@ -14,6 +14,8 @@ namespace Abstractions
         protected abstract void SetEquippedArmor(Armor value);
         protected abstract Weapon GetEquippedWeapon();
         protected abstract void SetEquippedWeapon(Weapon value);
+
+        public string Name { get; set; }
 
         public abstract double OnHit(Armor armor);
         public abstract void OnHitTaken(Character attacker);

@@ -1,6 +1,6 @@
 ﻿using Abstractions;
 
-public class Player: Character
+public class CharacterImpl: Character
 {
     public double Health { get; private set; }
     public double Mana { get; private set; }
@@ -12,7 +12,7 @@ public class Player: Character
     public Armor EquippedArmor { get; private set; }
     public Weapon EquippedWeapon { get; private set; }
 
-    public Player(double health, double baseDamage, int basePoise, Armor equippedArmor, Weapon equippedWeapon)
+    public CharacterImpl(string name, double health, double baseDamage, int basePoise, Armor equippedArmor, Weapon equippedWeapon)
     {
         Health = health;
         BaseDamage = baseDamage;

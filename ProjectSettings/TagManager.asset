@@ -14,7 +14,7 @@ TagManager:
   - UI
   - Background
   - SolidObjects
-  - Interactable
+  - Interactables
   - Climbing
   - Bouncing
   - Enemies
@@ -56,6 +56,9 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 1227548209
+    locked: 0
+  - name: Interactables
+    uniqueID: 1617620703
     locked: 0
   - name: Enemies
     uniqueID: 1888572353

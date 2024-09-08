@@ -38,6 +38,15 @@ public class CharacterController : MonoBehaviour
         gravityScaleAtStart = playerRigidBody.gravityScale;
         playerController = GetComponent<PlayerController>();
     }
+    void FixedUpdate()
+    {
+        if (playerRigidBody.velocity.y > playerController.maxVerticalSpeed)
+        {
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x,
+                Mathf.Lerp(playerRigidBody.velocity.y, playerController.maxVerticalSpeed, Time.deltaTime)
+                );
+        }
+    }
 
     public void Update()
     {
@@ -83,6 +92,33 @@ public class CharacterController : MonoBehaviour
         //FIXME: sometimes on enter play it is instatiating a bullet without firing click
         if (!isAlive) { return; }
         Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+    }
+
+    void OnDash(InputValue value)
+    {
+        if (!isAlive || !playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects")) || !playerController.canDash) return;
+
+        animator.SetBool("isDashing", true);
+
+        StartCoroutine(Dash());
+    }
+
+    IEnumerator Dash()
+    {
+        playerController.canDash = false;
+        float originalSpeed = playerController.runSpeed;
+        playerController.runSpeed = playerController.dashSpeed;
+        isImmortal = true;
+
+        yield return new WaitForSeconds(playerController.dashDuration);
+
+        playerController.runSpeed = originalSpeed;
+        animator.SetBool("isDashing", false);
+        animator.SetBool("isRunning", true);
+        isImmortal = false;
+        yield return new WaitForSeconds(playerController.dashCooldown);
+
+        playerController.canDash = true;
     }
 
     void FlipSprite()

@@ -3883,7 +3883,7 @@ GameObject:
   - component: {fileID: 1174066238}
   - component: {fileID: 1174066237}
   - component: {fileID: 1174066236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bouncing Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11112,10 +11112,6 @@ PrefabInstance:
       propertyPath: m_AnimatedTarget
       value: 
       objectReference: {fileID: 834520192}
-    - target: {fileID: 4940218281060209606, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
-      propertyPath: m_ChildCameras.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5868495219936132562, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
       propertyPath: m_Name
       value: Cameras

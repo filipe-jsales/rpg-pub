@@ -15,7 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Header("Player Stats")]
     private double baseHealth;
-    
+    [SerializeField] public float runSpeed = 5.0f;
+    [SerializeField] public float jumpSpeed = 5.0f;
+    [SerializeField] public float climbSpeed = 5.0f;
+
     [SerializeField]
     private double baseDamage;
     
@@ -27,6 +30,10 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] [Header("Armor")]
     private GameObject armorObject;
+
+    [Header("Player Misc")]
+    [SerializeField] public float immortalityDuration = 2f;
+    [SerializeField] public float blinkInterval = 0.1f;
 
     private string _previousWeaponName;
 

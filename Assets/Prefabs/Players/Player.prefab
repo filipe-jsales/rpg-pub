@@ -223,9 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
-  runSpeed: 7
-  jumpSpeed: 20
-  climbSpeed: 5
   deathKnockback: {x: 10, y: 10}
   solidObjectsLayer:
     serializedVersion: 2
@@ -296,10 +293,15 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
   characterName: Ginger
   baseHealth: 20
+  runSpeed: 5
+  jumpSpeed: 20
+  climbSpeed: 5
   baseDamage: 5
   basePoise: 5
   weaponObject: {fileID: 3393616469692499582, guid: 8833374148371594b9b1c712a2855634, type: 3}
   armorObject: {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}
+  immortalityDuration: 2
+  blinkInterval: 0.1
 --- !u!1 &3269760174119688242
 GameObject:
   m_ObjectHideFlags: 0

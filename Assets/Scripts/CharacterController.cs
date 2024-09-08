@@ -1,4 +1,5 @@
 using ScriptableObjects;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,9 +10,6 @@ public class CharacterController : MonoBehaviour
     
     Vector2 moveInput;
     Rigidbody2D playerRigidBody;
-    [SerializeField] float runSpeed = 5.0f;
-    [SerializeField] float jumpSpeed = 5.0f;
-    [SerializeField] float climbSpeed = 5.0f;
     [SerializeField] Vector2 deathKnockback = new Vector2(10f,10f);
 
     Animator animator;
@@ -25,13 +23,20 @@ public class CharacterController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform firePoint;
 
+    bool isImmortal = false;
+    SpriteRenderer spriteRenderer;
+
+    PlayerController playerController;
+
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerBodyCollider = GetComponent<CapsuleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         playerFeetCollider2D = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = playerRigidBody.gravityScale;
+        playerController = GetComponent<PlayerController>();
     }
 
     public void Update()
@@ -53,7 +58,7 @@ public class CharacterController : MonoBehaviour
 
     void Run()
     {
-        Vector2 playerVelocity = new Vector2 (moveInput.x* runSpeed, playerRigidBody.velocity.y);
+        Vector2 playerVelocity = new Vector2 (moveInput.x* playerController.runSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
@@ -69,7 +74,7 @@ public class CharacterController : MonoBehaviour
 
         if (value.isPressed)
         {
-            playerRigidBody.velocity += new Vector2(0f, jumpSpeed);
+            playerRigidBody.velocity += new Vector2(0f, playerController.jumpSpeed);
         }
     }
 
@@ -98,7 +103,7 @@ public class CharacterController : MonoBehaviour
             animator.SetBool("isClimbing", false);
             return;
         };
-        Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, moveInput.y * climbSpeed);
+        Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, moveInput.y * playerController.climbSpeed);
         playerRigidBody.velocity = climbVelocity;
         playerRigidBody.gravityScale = 0f;
 
@@ -118,6 +123,7 @@ public class CharacterController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isImmortal) return;
         if (playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "SolidObjects")))
         {
             var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
@@ -129,6 +135,25 @@ public class CharacterController : MonoBehaviour
                 playerRigidBody.velocity = deathKnockback;
                 FindObjectOfType<GameManager>().ProcessPlayerDamageTaken();
             }
+            else
+            {
+                StartCoroutine(OnDamageTaken());
+            }
         };
+    }
+    IEnumerator OnDamageTaken()
+    {
+        Debug.Log("Player is immortal");
+        isImmortal = true;
+        float elapsed = 0f;
+        while (elapsed < playerController.immortalityDuration)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(playerController.blinkInterval);
+            elapsed += playerController.blinkInterval;
+        }
+
+        spriteRenderer.enabled = true;
+        isImmortal = false;
     }
 }

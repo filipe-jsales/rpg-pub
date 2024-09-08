@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
   deathKnockback: {x: 10, y: 10}
-  bulletPrefab: {fileID: 8743280446847224780, guid: ee13b39363ad04f44a3bd41eb9dd235e, type: 3}
+  bulletPrefab: {fileID: 6420421219375113007, guid: fbdec8bd0e10ce649a248662fe9682ad, type: 3}
   firePoint: {fileID: 8205416182879369280}
 --- !u!61 &3860760323250530005
 BoxCollider2D:
@@ -326,7 +326,7 @@ Transform:
   m_GameObject: {fileID: 3269760174119688242}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.379, y: -0.016, z: -2.0499685}
+  m_LocalPosition: {x: 0.488, y: -0.164, z: -2.0499685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

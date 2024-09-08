@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         var weaponPrefab = weaponObject.GetComponent<WeaponPrefab>();
         var currentWeaponName = player.Character.Weapon.Name;
         if (_previousWeaponName == null) _previousWeaponName = currentWeaponName;
-        if (_previousWeaponName != currentWeaponName)
+        if ((_previousWeaponName != currentWeaponName) || _previousWeaponName != weaponPrefab.GetWeapon().Name)
         {
             _previousWeaponName = currentWeaponName;
             var animator = GetComponent<Animator>();

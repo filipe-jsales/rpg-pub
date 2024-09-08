@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator HandlePlayerDeath()
     {
         yield return new WaitForSeconds(2);
+        // TODO: reset player health on death
         TakeLife();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

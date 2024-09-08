@@ -143,6 +143,10 @@ public class CharacterController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        {
+            HandleDeath();
+        }
         if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
             if (_isInvulnerable) return;
@@ -150,10 +154,7 @@ public class CharacterController : MonoBehaviour
             player.Character.OnHitTaken(enemyCharacter);
             if (player.Character.GetHealth() <= 0)
             {
-                _isAlive = false;
-                _animator.SetTrigger("isDying");
-                _playerRigidBody.velocity = deathKnockback;
-                FindAnyObjectByType<GameManager>().ProcessPlayerDeath();
+                HandleDeath();
             }
             else
             {
@@ -161,6 +162,15 @@ public class CharacterController : MonoBehaviour
             }
         }
     }
+
+    private void HandleDeath()
+    {
+        _isAlive = false;
+        _animator.SetTrigger("isDying");
+        _playerRigidBody.velocity = deathKnockback;
+        FindAnyObjectByType<GameManager>().ProcessPlayerDeath();
+    }
+
     private IEnumerator OnDamageTaken()
     {
         Debug.Log("Player is immortal");

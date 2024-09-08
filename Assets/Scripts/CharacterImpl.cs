@@ -14,16 +14,12 @@ public class CharacterImpl: Character
 
     public CharacterImpl(string name, double health, double baseDamage, int basePoise, Armor equippedArmor, Weapon equippedWeapon)
     {
+        Name = name;
         Health = health;
         BaseDamage = baseDamage;
         BasePoise = basePoise;
         EquippedArmor = equippedArmor;
         EquippedWeapon = equippedWeapon;
-    }
-
-    public override double GetHealth()
-    {
-        return Health;
     }
 
     public override double OnHit(Armor armor)
@@ -39,6 +35,11 @@ public class CharacterImpl: Character
         EquippedArmor.HandleDurabilityDamage(damage);
         EquippedArmor.HandlePoiseDamage(attacker.Weapon);
         SetHealth(Health - damageTaken);
+    }
+
+    public override double GetHealth()
+    {
+        return Health;
     }
 
     protected override void SetHealth(double value)

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] 
+    private float bulletSpeed = 10f;
+
     Rigidbody2D bulletRigidBody;
-    [SerializeField] float bulletSpeed = 10f;
     CharacterController characterController;
     float xSpeed;
     void Start()

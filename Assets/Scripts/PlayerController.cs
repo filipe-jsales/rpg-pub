@@ -8,27 +8,29 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private CharacterScriptableObject player;
-
     [SerializeField]
     private string characterName;
-
-    [SerializeField]
+    
     [Header("Player Stats")]
+    [SerializeField]
     private double baseHealth;
-    [SerializeField] public float runSpeed = 5.0f;
-    [SerializeField] public float jumpSpeed = 5.0f;
-    [SerializeField] public float climbSpeed = 5.0f;
-
     [SerializeField]
     private double baseDamage;
-    
     [SerializeField]
     private int basePoise;
-
-    [SerializeField] [Header("Weapon")]
+    [SerializeField] 
+    public float runSpeed = 5.0f;
+    [SerializeField] 
+    public float jumpSpeed = 5.0f;
+    [SerializeField] 
+    public float climbSpeed = 5.0f;
+    
+    [Header("Weapon")]
+    [SerializeField] 
     private GameObject weaponObject;
     
-    [SerializeField] [Header("Armor")]
+    [Header("Armor")]
+    [SerializeField] 
     private GameObject armorObject;
 
     [Header("Player Misc")]

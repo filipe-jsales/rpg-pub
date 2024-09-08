@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] int playerLives = 3;
+    
+    [SerializeField] 
+    private int playerLives = 3;
 
     private void Awake()
     {
@@ -20,42 +22,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ProcessPlayerDamageTaken()
+    public void ProcessPlayerDeath()
     {
         if (playerLives > 1)
         {
-            StartCoroutine(HandlePlayerDamage());
+            StartCoroutine(HandlePlayerDeath());
         }
         else
         {
-            StartCoroutine(HandlePlayerDeath());
+            StartCoroutine(HandleGameOver());
         }
-    }
-
-    private IEnumerator HandlePlayerDamage()
-    {
-        yield return new WaitForSeconds(2);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator HandlePlayerDeath()
     {
         yield return new WaitForSeconds(2);
+        TakeLife();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    private IEnumerator HandleGameOver()
+    {
+        yield return new WaitForSeconds(2);
+        // TODO: implement and show game over screen
         ResetGameSession();
     }
 
-    void ResetGameSession()
+    private void ResetGameSession()
     {
         SceneManager.LoadScene(0);
         Destroy(gameObject);
     }
 
-    public void TakeLife()
+    private void TakeLife()
     {
         playerLives--;
-        Debug.Log("Vida restante: " + playerLives);
     }
 
     public void QuitGame()

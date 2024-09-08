@@ -23,20 +23,23 @@ public class EnemyController : MonoBehaviour
     [SerializeField] [Header("Armor")]
     private GameObject armorObject;
     
-    [SerializeField] float moveSpeed = 1f;
-    Rigidbody2D rigidbody2d;
-    [SerializeField] LayerMask solidObjectsLayer;
+    [SerializeField] 
+    private float moveSpeed = 1f;
+    [SerializeField] 
+    private LayerMask solidObjectsLayer;
+    
+    private Rigidbody2D _rigidbody2d;
 
     public Character EnemyCharacter;
     void Start()
     {
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        _rigidbody2d = GetComponent<Rigidbody2D>();
         EnemyCharacter = GenerateEnemyFromParameters();
     }
 
     void Update()
     {
-        rigidbody2d.velocity = new Vector2(moveSpeed, 0f);
+        _rigidbody2d.velocity = new Vector2(moveSpeed, 0f);
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -50,7 +53,7 @@ public class EnemyController : MonoBehaviour
 
     void FlipEnemyFacing()
     {
-        transform.localScale = new Vector2(-(Mathf.Sign(rigidbody2d.velocity.x)), 1f);
+        transform.localScale = new Vector2(-(Mathf.Sign(_rigidbody2d.velocity.x)), 1f);
     }
     
     private CharacterImpl GenerateEnemyFromParameters()

@@ -3,36 +3,30 @@ using UnityEngine;
 public enum GameState { FreeRoam, Dialog, Battle };
 public class GameController : MonoBehaviour
 {
-    
-    GameState state;
-    
-
+    private GameState _state;
     private void Start()
     {
         DialogManager.Instance.OnShowDialog += () =>
         {
-            state = GameState.Dialog;
+            _state = GameState.Dialog;
         };
         DialogManager.Instance.OnHideDialog += () =>
         {
-            if (state == GameState.Dialog)
-                state = GameState.FreeRoam;
+            if (_state == GameState.Dialog)
+                _state = GameState.FreeRoam;
         };
     }
 
     private void Update()
     {
-        if (state == GameState.FreeRoam)
+        switch (_state)
         {
-            //gingerMovement.Update();
-        }
-        else if (state == GameState.Dialog)
-        {
-            DialogManager.Instance.HandleUpdate();
-        }
-        else if (state == GameState.Battle)
-        {
-
+            case GameState.Dialog:
+                DialogManager.Instance.HandleUpdate();
+                break;
+            case GameState.Battle:
+            default:
+                break;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Interfaces
 {
+    // TODO: add sprites here
     public interface IRpgObject
     {
         string Name {  get; set; }

@@ -14,6 +14,9 @@ namespace PrefabScripts
         private AnimatorController animatorController;
         
         [SerializeField]
+        private Sprite sprite;
+        
+        [SerializeField]
         [Header("Weapon Information")]
         private double weaponDurability;
     
@@ -27,7 +30,9 @@ namespace PrefabScripts
         
         public Weapon GetWeapon()
         {
-            return new WeaponImpl(weaponName.ToString(), weaponDurability, weaponDamage, weaponPoiseDamage);
+            var weapon = new WeaponImpl(weaponName.ToString(), weaponDurability, weaponDamage, weaponPoiseDamage);
+            weapon.SetSprite(sprite);
+            return weapon;
         }
     }
 }

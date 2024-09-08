@@ -9,7 +9,7 @@ public class LevelExit : MonoBehaviour
     private float levelLoadDelay = 1f;
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (CompareTag("Player"))
+        if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(LoadNextLevel());
             //LoadNextLevel();

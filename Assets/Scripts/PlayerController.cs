@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
             _previousWeaponName = currentWeaponName;
             var animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
+            // TODO: remove this to update the equipped weapon, probably create setWeapon in interface
+            player.Character = GeneratePlayerFromParameters();
         }
     }
     

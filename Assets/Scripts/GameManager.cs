@@ -1,13 +1,21 @@
+using System;
 using System.Collections;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(InventoryUIManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     
+    [SerializeField]
+    private CharacterScriptableObject player;
+    
     [SerializeField] 
     private int playerLives = 3;
+    
+    public CharacterImpl Player => player.Character as CharacterImpl;
 
     private void Awake()
     {

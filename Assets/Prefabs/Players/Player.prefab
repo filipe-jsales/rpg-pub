@@ -224,12 +224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
   deathKnockback: {x: 10, y: 10}
-  solidObjectsLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  interactablesLayer:
-    serializedVersion: 2
-    m_Bits: 0
   bulletPrefab: {fileID: 8743280446847224780, guid: ee13b39363ad04f44a3bd41eb9dd235e, type: 3}
   firePoint: {fileID: 8205416182879369280}
 --- !u!61 &3860760323250530005
@@ -293,12 +287,12 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: af871e6464c820342a6704d4bc1d7ed5, type: 2}
   characterName: Ginger
   baseHealth: 20
+  baseDamage: 5
+  basePoise: 5
   runSpeed: 5
   jumpSpeed: 20
   climbSpeed: 5
-  baseDamage: 5
-  basePoise: 5
-  weaponObject: {fileID: 3393616469692499582, guid: 8833374148371594b9b1c712a2855634, type: 3}
+  weaponObject: {fileID: 1396807658846089972, guid: d9cc3a22d4248b54d9dbbfeec3518805, type: 3}
   armorObject: {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}
   immortalityDuration: 2
   blinkInterval: 0.1

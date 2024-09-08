@@ -294,8 +294,13 @@ MonoBehaviour:
   climbSpeed: 5
   weaponObject: {fileID: 1396807658846089972, guid: d9cc3a22d4248b54d9dbbfeec3518805, type: 3}
   armorObject: {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}
+  maxVerticalSpeed: 5.07
   immortalityDuration: 2
   blinkInterval: 0.1
+  dashSpeed: 5
+  dashDuration: 0.3
+  dashCooldown: 1
+  canDash: 1
 --- !u!1 &3269760174119688242
 GameObject:
   m_ObjectHideFlags: 0

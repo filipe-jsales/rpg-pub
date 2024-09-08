@@ -3883,7 +3883,7 @@ GameObject:
   - component: {fileID: 1174066238}
   - component: {fileID: 1174066237}
   - component: {fileID: 1174066236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bouncing Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,6 +26,8 @@ public class Bullet : MonoBehaviour
     {
         if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
+            var deathSound = other.gameObject.GetComponent<EnemyController>().GetRandomDeathSound();
+            FindAnyObjectByType<GameManager>().PlayClip(deathSound);
             Destroy(other.gameObject);
         };
         Destroy(gameObject);

@@ -215,6 +215,13 @@ MonoBehaviour:
   solidObjectsLayer:
     serializedVersion: 2
     m_Bits: 128
+  deathSounds:
+  - {fileID: 8300000, guid: 4f6c06d5f4da6c84385abd44938ab418, type: 3}
+  - {fileID: 8300000, guid: 1cb8927fad33afc44a62520757de5e16, type: 3}
+  - {fileID: 8300000, guid: 761b091d37a6cd844ac7f8138cb98df1, type: 3}
+  - {fileID: 8300000, guid: 3f62021f1d81b354f92462173a61c6a0, type: 3}
+  - {fileID: 8300000, guid: a0b13e1fd6567b4498aae5232499ebd7, type: 3}
+  - {fileID: 8300000, guid: 7711c42ed22687f458eaf246c574ef3b, type: 3}
 --- !u!61 &6227264408777275805
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1001 &5514544242553188574
 PrefabInstance:
@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5451169957028796883, guid: 45babeebbbf6e2341abc2ff18162dc5d, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: -5623194428626525839, guid: 09061dcbfcd9f1842b4fa21da3d808c3, type: 3}
+    - target: {fileID: 5451169957028796883, guid: 45babeebbbf6e2341abc2ff18162dc5d, type: 3}
       propertyPath: weaponDamage
       value: 5
       objectReference: {fileID: 0}
@@ -66,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: c8d162077d7b29145a1bdf40e210f043, type: 2}
     - target: {fileID: 7178479384295192224, guid: 45babeebbbf6e2341abc2ff18162dc5d, type: 3}
       propertyPath: m_Name
-      value: Unarmed Sword Variant
+      value: Unarmed Weapon Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

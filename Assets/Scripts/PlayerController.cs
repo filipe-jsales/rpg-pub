@@ -32,8 +32,13 @@ public class PlayerController : MonoBehaviour
     private GameObject armorObject;
 
     [Header("Player Misc")]
+    [SerializeField] public float maxVerticalSpeed = 10f;
     [SerializeField] public float immortalityDuration = 2f;
     [SerializeField] public float blinkInterval = 0.1f;
+    [SerializeField] public float dashSpeed = 5f;
+    [SerializeField] public float dashDuration = 0.3f;
+    [SerializeField] public float dashCooldown = 2f;
+    public bool canDash = true;
 
     private string _previousWeaponName;
 

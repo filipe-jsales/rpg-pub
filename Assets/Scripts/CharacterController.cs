@@ -38,10 +38,10 @@ public class CharacterController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (playerRigidBody.velocity.y > playerController.maxVerticalSpeed)
+        if (_playerRigidBody.velocity.y > _playerController.maxVerticalSpeed)
         {
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x,
-                Mathf.Lerp(playerRigidBody.velocity.y, playerController.maxVerticalSpeed, Time.deltaTime)
+            _playerRigidBody.velocity = new Vector2(_playerRigidBody.velocity.x,
+                Mathf.Lerp(_playerRigidBody.velocity.y, _playerController.maxVerticalSpeed, Time.deltaTime)
                 );
         }
     }

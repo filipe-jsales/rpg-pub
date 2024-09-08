@@ -85,7 +85,18 @@ public class CharacterController : MonoBehaviour
     {
         //FIXME: sometimes on enter play it is instatiating a bullet without firing click
         if (!_isAlive) { return; }
+        if (value.isPressed)
+        {
+            _animator.SetBool("isShootingArrow", true);
+            StartCoroutine(ShootingArrow());
+        }
+        //Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+    }
+    private IEnumerator ShootingArrow()
+    {
+        yield return new WaitForSeconds(0.2f);
         Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+        _animator.SetBool("isShootingArrow", false);
     }
     
     private void OnDash(InputValue value)
@@ -96,6 +107,7 @@ public class CharacterController : MonoBehaviour
 
         StartCoroutine(Dash());
     }
+
 
     private IEnumerator Dash()
     {

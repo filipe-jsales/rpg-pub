@@ -46,18 +46,23 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        var weaponPrefab = weaponObject.GetComponent<WeaponPrefab>();
-        _previousWeaponName = weaponPrefab.GetWeapon().Name;
-        var animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
-        player.Character = GeneratePlayerFromParameters();
+        if (player.Character == null)
+        {
+            var weaponPrefab = weaponObject.GetComponent<WeaponPrefab>();
+            _previousWeaponName = weaponPrefab.GetWeapon().Name;
+            var animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
+            player.Character = GeneratePlayerFromParameters();
+        }
+        
     }
 
     private void Update()
     {
         // TODO: verificar impacto de usar get component assim provavelmente um UnityEvent
         var weaponPrefab = weaponObject.GetComponent<WeaponPrefab>();
-        var currentWeaponName = weaponPrefab.GetWeapon().Name;
+        var currentWeaponName = player.Character.Weapon.Name;
+        if (_previousWeaponName == null) _previousWeaponName = currentWeaponName;
         if (_previousWeaponName != currentWeaponName)
         {
             _previousWeaponName = currentWeaponName;

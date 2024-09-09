@@ -133,7 +133,9 @@ public class CharacterController : MonoBehaviour
     private IEnumerator ShootingArrow()
     {
         yield return new WaitForSeconds(0.2f);
-        Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+        Quaternion arrowRotation = Quaternion.Euler(0, 0, -45);
+        Instantiate(bulletPrefab, firePoint.position, arrowRotation);
+
         _animator.SetBool("isShootingArrow", false);
     }
 
@@ -170,15 +172,19 @@ public class CharacterController : MonoBehaviour
         _playerController.canDash = true;
     }
 
-    private void FlipSprite()
+    private void FlipSprite(SpriteRenderer spriteToFlip = null)
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(_playerRigidBody.velocity.x) > Mathf.Epsilon;
 
         if (playerHasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(_playerRigidBody.velocity.x), 1f);
-        }
 
+            if (spriteToFlip != null)
+            {
+                spriteToFlip.flipX = transform.localScale.x < 0;
+            }
+        }
     }
     private void OnClimbLadder()
     {

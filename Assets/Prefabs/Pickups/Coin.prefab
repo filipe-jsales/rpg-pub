@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156b940fde782d44191c47594cb3de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupCoinSFX: {fileID: 8300000, guid: 41855e304851f9047979ab8b17b87ea1, type: 3}
+  pointPerCoin: 1
 --- !u!82 &8866196412150558790
 AudioSource:
   m_ObjectHideFlags: 0

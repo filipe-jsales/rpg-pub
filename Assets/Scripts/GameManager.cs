@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(InventoryUIManager))]
-[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -15,7 +15,14 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] 
     private int playerLives = 3;
-    
+    private int score = 0;
+
+    [Header("UI")]
+    [SerializeField]
+    TextMeshProUGUI livesText;
+    [SerializeField]
+    TextMeshProUGUI scoreText;
+
     public CharacterImpl Player => player.Character as CharacterImpl;
 
     private void Awake()
@@ -29,6 +36,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        livesText.text = playerLives.ToString();
+        scoreText.text = score.ToString();
     }
 
     public void ProcessPlayerDeath()
@@ -67,10 +80,17 @@ public class GameManager : MonoBehaviour
     private void TakeLife()
     {
         playerLives--;
+        livesText.text = playerLives.ToString();
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void AddToScore(int points)
+    {
+        score += points;
+        scoreText.text = score.ToString();
     }
 }

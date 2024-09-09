@@ -24,6 +24,7 @@ public class CharacterController : MonoBehaviour
 
     private float _gravityScaleAtStart;
     private bool _isAlive = true;
+    private bool _isDying = false;
     private bool _isInvulnerable = false;
     private bool isOnGround = false;
 
@@ -242,15 +243,19 @@ public class CharacterController : MonoBehaviour
 
     private void HandleDeath()
     {
+        if (!_isAlive) return;
+        //FIXME: on death if player continues pressing running buttons will reload a lot of times the next level
         _isAlive = false;
+        _isDying = true;
         _animator.SetTrigger("isDying");
         _playerRigidBody.velocity = deathKnockback;
         FindAnyObjectByType<GameManager>().ProcessPlayerDeath();
+        GetComponent<PlayerController>().enabled = false;
     }
 
     private IEnumerator OnDamageTaken()
     {
-        Debug.Log("Player is immortal");
+        if (_isDying) yield break;
         _isInvulnerable = true;
         float elapsed = 0f;
         while (elapsed < _playerController.immortalityDuration)

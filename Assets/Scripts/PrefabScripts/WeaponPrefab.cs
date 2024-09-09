@@ -1,5 +1,4 @@
 ﻿using Abstractions;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +7,7 @@ namespace PrefabScripts
     public class WeaponPrefab : MonoBehaviour
     {
         [SerializeField]
-        private AnimatorController animatorController;
+        private RuntimeAnimatorController animatorController;
         
         [SerializeField]
         private Sprite sprite;
@@ -23,7 +22,7 @@ namespace PrefabScripts
         [SerializeField]
         private int weaponPoiseDamage;
 
-        public AnimatorController AnimatorController => animatorController;
+        public RuntimeAnimatorController RuntimeAnimatorController => animatorController;
         
         public Weapon GetWeapon()
         {

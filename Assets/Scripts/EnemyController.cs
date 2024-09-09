@@ -27,9 +27,6 @@ public class EnemyController : MonoBehaviour
     private float moveSpeed = 1f;
     [SerializeField] 
     private LayerMask solidObjectsLayer;
-
-    [SerializeField] 
-    private AudioClip[] deathSounds;
     
     private Rigidbody2D _rigidbody2d;
 
@@ -43,11 +40,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         _rigidbody2d.velocity = new Vector2(moveSpeed, 0f);
-    }
-
-    public AudioClip GetRandomDeathSound()
-    {
-        return deathSounds[Random.Range(0, deathSounds.Length)];
     }
 
     void OnTriggerExit2D(Collider2D collision)

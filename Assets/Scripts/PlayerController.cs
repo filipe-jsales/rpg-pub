@@ -66,8 +66,8 @@ public class PlayerController : MonoBehaviour
             {
                 player.Character.SetHealth(baseHealth);
             }
-            var prefabPath = "Assets/Prefabs/Weapons/";
-            equippedWeaponObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath + player.Character.Weapon.Name + ".prefab");
+            var prefabPath = "Prefabs/Weapons/";
+            equippedWeaponObject = Resources.Load<GameObject>(prefabPath + player.Character.Weapon.Name);
         }
         var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
         var animator = GetComponent<Animator>();
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public void SwitchToWeapon(WeaponPrefab prefab)
     {
         equippedWeaponObject = prefab.gameObject;
-        GetComponent<Animator>().runtimeAnimatorController = prefab.AnimatorController;
+        GetComponent<Animator>().runtimeAnimatorController = prefab.RuntimeAnimatorController;
         player.Character.Weapon = prefab.gameObject.GetComponent<WeaponPrefab>().GetWeapon();
     }
     

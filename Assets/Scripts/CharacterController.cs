@@ -127,15 +127,15 @@ public class CharacterController : MonoBehaviour
                 EnemyController enemy = hit.collider.GetComponent<EnemyController>();
                 if (enemy != null)
                 {
-                    player.Character.OnMeleeAttack(enemy.EnemyCharacter);
-                    if (player.Character.GetHealth() <= 0)
-                    {
-                        HandleDeath();
-                    }
-                    else
-                    {
-                        StartCoroutine(OnDamageTaken());
-                    }
+                    enemy.OnHitTaken(player.Character);
+                    // if (player.Character.GetHealth() <= 0)
+                    // {
+                    //     HandleDeath();
+                    // }
+                    // else
+                    // {
+                    //     StartCoroutine(OnDamageTaken());
+                    // }
                 }
             }
         }

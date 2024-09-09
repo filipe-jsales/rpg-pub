@@ -55,6 +55,15 @@ public class EnemyController : MonoBehaviour
     {
         transform.localScale = new Vector2(-(Mathf.Sign(_rigidbody2d.velocity.x)), 1f);
     }
+
+    public void OnHitTaken(Character attacker)
+    {
+        EnemyCharacter.OnHitTaken(attacker);
+        if (EnemyCharacter.GetHealth() <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     
     private CharacterImpl GenerateEnemyFromParameters()
     {

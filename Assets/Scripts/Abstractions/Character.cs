@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using UnityEngine;
 
 namespace Abstractions
 {
@@ -16,6 +17,7 @@ namespace Abstractions
         protected abstract void SetEquippedWeapon(Weapon value);
 
         public string Name { get; set; }
+        public Sprite Sprite { get; set; }
 
         public abstract double GetHealth();
 

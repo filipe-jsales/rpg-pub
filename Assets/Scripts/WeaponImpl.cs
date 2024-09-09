@@ -6,7 +6,6 @@ public class WeaponImpl : Weapon
     private double Durability { get; set; }
     private double Damage { get; set; }
     private int PoiseDamage { get; set; }
-    private Sprite Sprite;
 
     public WeaponImpl(string name, double durability, double damage, int poiseDamage)
     { 
@@ -19,16 +18,6 @@ public class WeaponImpl : Weapon
         SetDurability(durability);
         SetDamage(damage);
         SetPoiseDamage(poiseDamage);
-    }
-
-    public override void SetSprite(Sprite value)
-    {
-        Sprite = value;
-    }
-
-    public override Sprite GetSprite()
-    {
-        return Sprite;
     }
 
     public override double HandlePhysicalDamage(double baseDamage)

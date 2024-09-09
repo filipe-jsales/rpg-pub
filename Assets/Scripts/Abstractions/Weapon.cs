@@ -9,8 +9,7 @@ namespace Abstractions
         protected abstract void SetDurability(double value);
         protected abstract void SetDamage(double value);
         protected abstract void SetPoiseDamage(int value);
-        public abstract void SetSprite(Sprite value);
-        public abstract Sprite GetSprite();
+        public Sprite Sprite { get; set; }
 
         public abstract void HandleDurabilityDamage(Armor armor);
         public abstract double HandlePhysicalDamage(double baseDamage);

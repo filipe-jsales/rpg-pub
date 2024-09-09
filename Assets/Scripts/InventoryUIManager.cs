@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,13 @@ public class InventoryUIManager : MonoBehaviour
 {
     [SerializeField]
     private Canvas inventoryCanvas;
+    
+    private GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GetComponent<GameManager>();
+    }
 
     private void Update()
     {
@@ -23,19 +31,27 @@ public class InventoryUIManager : MonoBehaviour
 
     private IEnumerator UpdateInventoryUI()
     {
-        var textComponents = inventoryCanvas.GetComponentsInChildren<TextMeshProUGUI>();
+        UpdateInventorySlotImages();
+        UpdateTextComponents();
+        yield return new WaitForSeconds(2f);
+    }
+
+    private void UpdateInventorySlotImages()
+    {
+        var items = _gameManager.Items;
         var images = inventoryCanvas.GetComponentsInChildren<Image>();
-        var character = gameObject.GetComponent<GameManager>().Player;
-        // TODO: when inventory is implemented, get sprite from item there
-        foreach (var i in images)
+        images = images.Where(i => i.gameObject.name.Contains("InventorySlot")).ToArray();
+        
+        for (int i = 0; i < images.Length; i++)
         {
-            // TODO: substitute by a tag
-            if (i.gameObject.name == "InventorySlot1")
-            {
-                i.sprite = character.Weapon.GetSprite();
-            }
+            images[i].sprite = items[i].Sprite;
         }
-        // TODO: better this
+    }
+
+    private void UpdateTextComponents()
+    {
+        var character = _gameManager.Player;
+        var textComponents = inventoryCanvas.GetComponentsInChildren<TextMeshProUGUI>();
         foreach (var textComponent in textComponents)
         {
             var text = textComponent.text.Split(":")[0];
@@ -61,6 +77,10 @@ public class InventoryUIManager : MonoBehaviour
                     break;
             }
         }
-        yield return new WaitForSeconds(2f);
+    }
+    
+    public void SwitchToAnotherRandomWeapon()
+    {
+        GameObject.Find("Player").GetComponent<PlayerController>().SwitchToAnotherRandomWeapon();
     }
 }

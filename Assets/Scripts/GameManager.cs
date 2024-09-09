@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using Interfaces;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private AudioSource _audioSource;
     
     public CharacterImpl Player => player.Character as CharacterImpl;
+    public IRpgObject[] Items => player.Items;
 
     private void Start()
     {

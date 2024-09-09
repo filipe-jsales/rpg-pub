@@ -1,4 +1,6 @@
-﻿using Abstractions;
+﻿using System.Collections.Generic;
+using Abstractions;
+using Interfaces;
 using UnityEngine;
 
 namespace ScriptableObjects
@@ -7,5 +9,6 @@ namespace ScriptableObjects
     public class CharacterScriptableObject : ScriptableObject
     {
         public Character Character;
+        public IRpgObject[] Items;
     }
 }

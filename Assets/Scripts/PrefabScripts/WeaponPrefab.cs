@@ -31,7 +31,7 @@ namespace PrefabScripts
         public Weapon GetWeapon()
         {
             var weapon = new WeaponImpl(weaponName.ToString(), weaponDurability, weaponDamage, weaponPoiseDamage);
-            weapon.SetSprite(sprite);
+            weapon.Sprite = sprite;
             return weapon;
         }
     }

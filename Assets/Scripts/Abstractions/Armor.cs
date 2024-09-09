@@ -1,5 +1,6 @@
 ﻿
 using Interfaces;
+using UnityEngine;
 
 namespace Abstractions
 {
@@ -13,6 +14,7 @@ namespace Abstractions
         public abstract void HandlePoiseDamage(Weapon weapon);
 
         public string Name { get; set; }
+        public Sprite Sprite { get; set; }
 
         public double HealthFactor
         {

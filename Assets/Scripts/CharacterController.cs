@@ -25,6 +25,16 @@ public class CharacterController : MonoBehaviour
     private float _gravityScaleAtStart;
     private bool _isAlive = true;
     private bool _isInvulnerable = false;
+    private bool isOnGround = false;
+
+    [Header("Player SFX")][SerializeField]
+    AudioClip[] footstepSounds;
+    [Header("Player Misc")][SerializeField]
+    float footstepDelay = 0.03f;
+    private float footstepTimer = 0f;
+    [SerializeField]
+    float climbSoundDelay = 0.3f;
+    private float climbSoundTimer = 0f;
 
     private void Start()
     {
@@ -51,7 +61,16 @@ public class CharacterController : MonoBehaviour
         if (!_isAlive) { return; }
         Run();
         FlipSprite();
-        ClimbLadder();
+        OnClimbLadder();
+
+        bool wasOnGround = isOnGround;
+        isOnGround = _playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects"));
+
+        if (!wasOnGround && isOnGround)
+        {
+            OnLandOnTheGround();
+        }
+
     }
     void OnMove(InputValue value)
     {
@@ -61,11 +80,29 @@ public class CharacterController : MonoBehaviour
 
     private void Run()
     {
-        Vector2 playerVelocity = new Vector2 (_moveInput.x* _playerController.runSpeed, _playerRigidBody.velocity.y);
+        Vector2 playerVelocity = new Vector2(_moveInput.x * _playerController.runSpeed, _playerRigidBody.velocity.y);
         _playerRigidBody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(_playerRigidBody.velocity.x) > Mathf.Epsilon;
         _animator.SetBool("isRunning", playerHasHorizontalSpeed);
+
+        bool isOnGround = checkIfPlayerIsOnGround();
+
+        if (playerHasHorizontalSpeed && isOnGround)
+        {
+            GetFootSteps();
+        }
+    }
+
+    private void GetFootSteps()
+    {
+        footstepTimer -= Time.deltaTime;
+
+        if (footstepTimer <= 0f)
+        {
+            AudioManager.instance.PlayRandomFootstep(transform.position);
+            footstepTimer = footstepDelay;
+        }
     }
 
     private void OnJump(InputValue value)
@@ -77,12 +114,14 @@ public class CharacterController : MonoBehaviour
 
         if (value.isPressed)
         {
+            AudioManager.instance.PlayAtPoint("Player Jump");
             _playerRigidBody.velocity += new Vector2(0f, _playerController.jumpSpeed);
         }
     }
 
     private void OnFire(InputValue value)
     {
+        //TODO: refactor this method to allow multiple weapons attacks
         //FIXME: sometimes on enter play it is instatiating a bullet without firing click
         if (!_isAlive) { return; }
         if (value.isPressed)
@@ -90,7 +129,6 @@ public class CharacterController : MonoBehaviour
             _animator.SetBool("isShootingArrow", true);
             StartCoroutine(ShootingArrow());
         }
-        //Instantiate(bulletPrefab, firePoint.position, transform.rotation);
     }
     private IEnumerator ShootingArrow()
     {
@@ -98,7 +136,12 @@ public class CharacterController : MonoBehaviour
         Instantiate(bulletPrefab, firePoint.position, transform.rotation);
         _animator.SetBool("isShootingArrow", false);
     }
-    
+
+    private void OnLandOnTheGround()
+    {
+        AudioManager.instance.PlayAtPoint("Player Land on the ground");
+    }
+
     private void OnDash(InputValue value)
     {
         if (!_isAlive || !_playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects")) || !_playerController.canDash) return;
@@ -137,22 +180,38 @@ public class CharacterController : MonoBehaviour
         }
 
     }
-    private void ClimbLadder()
+    private void OnClimbLadder()
     {
         if (!_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             _playerRigidBody.gravityScale = _gravityScaleAtStart;
             _animator.SetBool("isClimbing", false);
             return;
-        };
+        }
+
         Vector2 climbVelocity = new Vector2(_playerRigidBody.velocity.x, _moveInput.y * _playerController.climbSpeed);
         _playerRigidBody.velocity = climbVelocity;
         _playerRigidBody.gravityScale = 0f;
 
         bool playerHasVerticalSpeed = Mathf.Abs(_playerRigidBody.velocity.y) > Mathf.Epsilon;
         _animator.SetBool("isClimbing", playerHasVerticalSpeed);
+
+        if (playerHasVerticalSpeed)
+        {
+            climbSoundTimer -= Time.deltaTime;
+
+            if (climbSoundTimer <= 0f)
+            {
+                AudioManager.instance.PlayAtPoint("Player Climb Ladder");
+                climbSoundTimer = climbSoundDelay;
+            }
+        }
+        else
+        {
+            climbSoundTimer = 0f;
+        }
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
@@ -197,5 +256,9 @@ public class CharacterController : MonoBehaviour
 
         _spriteRenderer.enabled = true;
         _isInvulnerable = false;
+    }
+    private bool checkIfPlayerIsOnGround()
+    {
+        return _playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects", "Climbing", "Hazards"));
     }
 }

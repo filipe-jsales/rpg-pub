@@ -226,6 +226,18 @@ MonoBehaviour:
   deathKnockback: {x: 10, y: 10}
   bulletPrefab: {fileID: 6420421219375113007, guid: fbdec8bd0e10ce649a248662fe9682ad, type: 3}
   firePoint: {fileID: 8205416182879369280}
+  footstepSounds:
+  - {fileID: 8300000, guid: 74dade3522198b641848d78612612ec0, type: 3}
+  - {fileID: 8300000, guid: 32de7b5cf042d144ca95f0b740eefbd7, type: 3}
+  - {fileID: 8300000, guid: 576be793c1873524aa9dddb7d8345cec, type: 3}
+  - {fileID: 8300000, guid: a5f83c5ee1a2e7449825fc5cde9798eb, type: 3}
+  - {fileID: 8300000, guid: a3d5917ee9ce25540b8408942e10e4fa, type: 3}
+  - {fileID: 8300000, guid: 25b051db236914a45bd28bfc551bfa54, type: 3}
+  - {fileID: 8300000, guid: e2618cb53ce56c643985bde0317c3fb4, type: 3}
+  - {fileID: 8300000, guid: 57d35496092f3b144af55296446d3608, type: 3}
+  - {fileID: 8300000, guid: 2f2dee3702373544aaf7641162bf1656, type: 3}
+  footstepDelay: 0.3
+  climbSoundDelay: 0.28
 --- !u!61 &3860760323250530005
 BoxCollider2D:
   m_ObjectHideFlags: 0

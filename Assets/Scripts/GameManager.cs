@@ -16,14 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private int playerLives = 3;
     
-    private AudioSource _audioSource;
-    
     public CharacterImpl Player => player.Character as CharacterImpl;
-
-    private void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
 
     private void Awake()
     {
@@ -48,56 +41,6 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(HandleGameOver());
         }
-    }
-
-    public void PlayClip(AudioClip clip)
-    {
-        FadeOut();
-        _audioSource.PlayOneShot(clip);
-    }
-    
-    public float fadeDuration = 1f; // Adjust the fade duration as needed
-
-    public void FadeIn()
-    {
-        StartCoroutine(FadeInCoroutine());
-    }
-
-    IEnumerator FadeInCoroutine()
-    {
-        float elapsedTime = 0f;
-        float startVolume = _audioSource.volume;
-
-        while (elapsedTime < fadeDuration)
-        {
-            _audioSource.volume = Mathf.Lerp(startVolume, 1f, elapsedTime / fadeDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _audioSource.volume = 1f;
-    }
-    
-    public void FadeOut()
-    {
-        StartCoroutine(FadeOutCoroutine());
-    }
-
-    IEnumerator FadeOutCoroutine()
-    {
-        float elapsedTime = 0f;
-        float startVolume = _audioSource.volume;
-
-        while (elapsedTime < fadeDuration)
-        {
-            _audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / fadeDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _audioSource.volume = 0f;
-        _audioSource.Stop(); // Stop the audio source after fading out
-        _audioSource.volume = startVolume;
     }
 
     private IEnumerator HandlePlayerDeath()

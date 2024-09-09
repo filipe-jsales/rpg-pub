@@ -40,6 +40,11 @@ public class CharacterImpl: Character
         SetHealth(Health - damageTaken);
     }
 
+    public override void OnMeleeAttack(Character target)
+    {
+        Debug.Log("MELEEE ATTACK " + target.Name);
+    }
+
     public override double GetHealth()
     {
         return Health;

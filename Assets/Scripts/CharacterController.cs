@@ -37,6 +37,8 @@ public class CharacterController : MonoBehaviour
     float climbSoundDelay = 0.3f;
     private float climbSoundTimer = 0f;
 
+    [SerializeField] private float meleeAttackRange = 1.5f;
+
     private void Start()
     {
         _playerRigidBody = GetComponent<Rigidbody2D>();
@@ -103,6 +105,39 @@ public class CharacterController : MonoBehaviour
         {
             AudioManager.instance.PlayRandomFootstep(transform.position);
             footstepTimer = footstepDelay;
+        }
+    }
+
+    void OnMeleeAttack(InputValue value)
+    {
+        if (!_isAlive) { return; }
+        if (value.isPressed)
+        {
+            LayerMask enemyLayer = LayerMask.GetMask("Enemies");
+            Vector2 attackDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, attackDirection, meleeAttackRange, enemyLayer);
+            Debug.DrawRay(transform.position, attackDirection * meleeAttackRange, Color.red, 0.5f);
+
+            if (hit.collider != null)
+            {
+                Debug.Log("Inimigo atingido: " + hit.collider.name);
+                
+
+                EnemyController enemy = hit.collider.GetComponent<EnemyController>();
+                if (enemy != null)
+                {
+                    player.Character.OnMeleeAttack(enemy.EnemyCharacter);
+                    if (player.Character.GetHealth() <= 0)
+                    {
+                        HandleDeath();
+                    }
+                    else
+                    {
+                        StartCoroutine(OnDamageTaken());
+                    }
+                }
+            }
         }
     }
 

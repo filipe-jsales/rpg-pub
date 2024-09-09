@@ -27,6 +27,8 @@ namespace Abstractions
         public abstract double OnHit(Armor armor);
         public abstract void OnHitTaken(Character attacker);
 
+        public abstract void OnMeleeAttack(Character target);
+
         public int Level
         {
             set => SetLevel(value);

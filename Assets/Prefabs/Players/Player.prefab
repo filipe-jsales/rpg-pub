@@ -293,9 +293,13 @@ MonoBehaviour:
   jumpSpeed: 20
   climbSpeed: 5
   equippedWeaponObject: {fileID: 3393616469692499582, guid: 8833374148371594b9b1c712a2855634, type: 3}
-  weapons:
+  startingWeapons:
   - {fileID: 3393616469692499582, guid: 8833374148371594b9b1c712a2855634, type: 3}
   - {fileID: 1396807658846089972, guid: d9cc3a22d4248b54d9dbbfeec3518805, type: 3}
+  equippedArmorObject: {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}
+  startingArmors:
+  - {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}
+  - {fileID: 6632079078856917266, guid: a371dc119b709e14fbb7632ee5501a3e, type: 3}
   armorObject: {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}
   maxVerticalSpeed: 5.07
   immortalityDuration: 2

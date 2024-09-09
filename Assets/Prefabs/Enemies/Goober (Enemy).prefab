@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Goober
   baseHealth: 20
-  baseDamage: 100
+  baseDamage: 5
   basePoise: 1
   weaponObject: {fileID: 3393616469692499582, guid: 8833374148371594b9b1c712a2855634, type: 3}
   armorObject: {fileID: 3975919890697427561, guid: 5bfae65f993510e4a8e5e742ae22aff1, type: 3}

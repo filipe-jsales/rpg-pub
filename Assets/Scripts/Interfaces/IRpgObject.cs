@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Interfaces
 {
@@ -11,5 +12,6 @@ namespace Interfaces
         int PoiseFactor { set; } // either poise damage modifier or poise total modifier
         
         Sprite Sprite {  get; set; }
+        UnityEvent OnInteract { get; set; }
     }
 }

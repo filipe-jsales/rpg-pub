@@ -1,15 +1,12 @@
 ﻿using Abstractions;
-using Enums;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PrefabScripts
 {
     public class WeaponPrefab : MonoBehaviour
     {
-        [SerializeField]
-        private WeaponEnum weaponName;
-
         [SerializeField]
         private AnimatorController animatorController;
         
@@ -30,9 +27,21 @@ namespace PrefabScripts
         
         public Weapon GetWeapon()
         {
-            var weapon = new WeaponImpl(weaponName.ToString(), weaponDurability, weaponDamage, weaponPoiseDamage);
+            var weapon = new WeaponImpl(gameObject.name, weaponDurability, weaponDamage, weaponPoiseDamage);
             weapon.Sprite = sprite;
+            weapon.OnInteract = OnInteract();
             return weapon;
+        }
+
+        private UnityEvent OnInteract()
+        {
+            var uEvent = new UnityEvent();
+            uEvent.AddListener(() =>
+            {
+                GameObject.Find("Player").GetComponent<PlayerController>().SwitchToWeapon(this);
+            });
+
+            return uEvent;
         }
     }
 }

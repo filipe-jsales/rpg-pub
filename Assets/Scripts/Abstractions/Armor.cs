@@ -1,6 +1,7 @@
 ﻿
 using Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Abstractions
 {
@@ -15,6 +16,7 @@ namespace Abstractions
 
         public string Name { get; set; }
         public Sprite Sprite { get; set; }
+        public UnityEvent OnInteract { get; set; }
 
         public double HealthFactor
         {

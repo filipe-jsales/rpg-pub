@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Interfaces;
 using PrefabScripts;
 using ScriptableObjects;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -33,12 +33,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] 
     private GameObject equippedWeaponObject;
     
-    [SerializeField] 
-    private GameObject[] weapons;
+    [FormerlySerializedAs("weapons")] [SerializeField] 
+    private GameObject[] startingWeapons;
     
     [Header("Armor")]
     [SerializeField] 
-    private GameObject armorObject;
+    private GameObject equippedArmorObject;
+    
+    [SerializeField] 
+    private GameObject[] startingArmors;
 
     [Header("Player Misc")]
     [SerializeField] public float maxVerticalSpeed = 10f;
@@ -48,67 +51,65 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float dashDuration = 0.3f;
     [SerializeField] public float dashCooldown = 2f;
     public bool canDash = true;
-
-    private string _previousWeaponName;
-
-    public void SwitchToAnotherRandomWeapon()
-    {
-        var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
-        var prefabs = weapons.Select(o => o.GetComponent<WeaponPrefab>()).ToList();
-        prefabs.Remove(weaponPrefab);
-        var randomPrefab = prefabs[Random.Range(0, prefabs.Count)];
-        equippedWeaponObject = randomPrefab.gameObject;
-        Debug.Log("Changed to: " + equippedWeaponObject.gameObject.GetComponent<WeaponPrefab>().GetWeapon().Name);
-    }
+    
 
     private void Start()
     {
-        equippedWeaponObject = GetComponent<PlayerController>().equippedWeaponObject;
         if (player.Character == null)
         {
-            var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
-            _previousWeaponName = weaponPrefab.GetWeapon().Name;
-            var animator = GetComponent<Animator>();
-            animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
             player.Character = GeneratePlayerFromParameters();
             player.Items = GetItems();
         }
+        else
+        {
+            if (player.Character.GetHealth() <= 0)
+            {
+                player.Character.SetHealth(baseHealth);
+            }
+            var prefabPath = "Assets/Prefabs/Weapons/";
+            equippedWeaponObject = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath + player.Character.Weapon.Name + ".prefab");
+        }
+        var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
+        var animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
         
     }
-
-    private IRpgObject[] GetItems()
+    
+    public void SwitchToWeapon(WeaponPrefab prefab)
     {
-        var items = new List<IRpgObject>();
-
-        foreach (var weapon in weapons)
-        {
-            items.Add(weapon.GetComponent<WeaponPrefab>().GetWeapon());
-        }
-        // TODO: logic for armors
-
-        return items.ToArray();
+        equippedWeaponObject = prefab.gameObject;
+        GetComponent<Animator>().runtimeAnimatorController = prefab.AnimatorController;
+        player.Character.Weapon = prefab.gameObject.GetComponent<WeaponPrefab>().GetWeapon();
     }
-
-    private void Update()
+    
+    public void SwitchToArmor(ArmorPrefab prefab)
     {
-        // TODO: verificar impacto de usar get component assim provavelmente um UnityEvent
-        var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
-        var currentWeaponName = player.Character.Weapon.Name;
-        if (_previousWeaponName == null) _previousWeaponName = currentWeaponName;
-        if ((_previousWeaponName != currentWeaponName) || _previousWeaponName != weaponPrefab.GetWeapon().Name)
-        {
-            _previousWeaponName = currentWeaponName;
-            var animator = GetComponent<Animator>();
-            animator.runtimeAnimatorController = weaponPrefab.AnimatorController;
-            // TODO: remove this to update the equipped weapon, probably create setWeapon in interface
-            player.Character = GeneratePlayerFromParameters();
-        }
+        equippedArmorObject = prefab.gameObject;
+        player.Character.Armor = prefab.gameObject.GetComponent<ArmorPrefab>().GetArmor();
     }
     
     private CharacterImpl GeneratePlayerFromParameters()
     {
         var weapon = equippedWeaponObject.GetComponent<WeaponPrefab>().GetWeapon();
-        var armor = armorObject.GetComponent<ArmorPrefab>().GetArmor();
+        var armor = equippedArmorObject.GetComponent<ArmorPrefab>().GetArmor();
         return new CharacterImpl(characterName, baseHealth, baseDamage, basePoise, armor, weapon);
+    }
+    
+    private IRpgObject[] GetItems()
+    {
+        var items = new List<IRpgObject>();
+
+        foreach (var weapon in startingWeapons)
+        {
+            items.Add(weapon.GetComponent<WeaponPrefab>().GetWeapon());
+        }
+        
+        foreach (var armor in startingArmors)
+        {
+            items.Add(armor.GetComponent<ArmorPrefab>().GetArmor());
+        }
+        // TODO: logic for armors
+
+        return items.ToArray();
     }
 }

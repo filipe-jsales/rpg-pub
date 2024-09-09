@@ -1,4 +1,5 @@
 ﻿using Abstractions;
+using UnityEngine;
 
 public class CharacterImpl: Character
 {
@@ -31,7 +32,9 @@ public class CharacterImpl: Character
     public override void OnHitTaken(Character attacker)
     {
         var damage = attacker.OnHit(EquippedArmor);
+        Debug.Log("damage attempted: " + damage);
         var damageTaken = EquippedArmor.HandlePhysicalDamage(damage);
+        Debug.Log("damage taken: " + damageTaken);
         EquippedArmor.HandleDurabilityDamage(damage);
         EquippedArmor.HandlePoiseDamage(attacker.Weapon);
         SetHealth(Health - damageTaken);
@@ -42,7 +45,7 @@ public class CharacterImpl: Character
         return Health;
     }
 
-    protected override void SetHealth(double value)
+    public override void SetHealth(double value)
     {
         Health = value;
     }
@@ -75,6 +78,11 @@ public class CharacterImpl: Character
     protected override void SetExperience(double value)
     {
         Experience = value;
+    }
+    
+    protected override Armor GetEquippedArmor()
+    {
+        return EquippedArmor;
     }
 
     protected override void SetEquippedArmor(Armor value)

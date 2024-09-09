@@ -39,12 +39,35 @@ public class InventoryUIManager : MonoBehaviour
     private void UpdateInventorySlotImages()
     {
         var items = _gameManager.Items;
+        var character = _gameManager.Player;
         var images = inventoryCanvas.GetComponentsInChildren<Image>();
-        images = images.Where(i => i.gameObject.name.Contains("InventorySlot")).ToArray();
-        
-        for (int i = 0; i < images.Length; i++)
+        var inventorySlots =  images.Where(i => i.gameObject.name.Contains("InventorySlot")).ToArray();
+        var equippedItems = images.Where(i => i.gameObject.name.Contains("Equipped")).ToArray();
+
+        foreach (var equipped in equippedItems)
         {
-            images[i].sprite = items[i].Sprite;
+            switch (equipped.gameObject.name)
+            {
+                case "EquippedWeapon":
+                    equipped.sprite = character.EquippedWeapon.Sprite;
+                    break;
+                case "EquippedArmor":
+                    equipped.sprite = character.EquippedArmor.Sprite;
+                    break;
+            }
+        }
+        
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            var image = inventorySlots[i];
+            var item = items[i];
+            image.sprite = item.Sprite;
+            if (image.gameObject.GetComponent<Button>() == null)
+            {
+                var button = image.gameObject.AddComponent<Button>();
+                button.onClick.AddListener(() => item.OnInteract.Invoke());
+            }
+            
         }
     }
 
@@ -77,10 +100,5 @@ public class InventoryUIManager : MonoBehaviour
                     break;
             }
         }
-    }
-    
-    public void SwitchToAnotherRandomWeapon()
-    {
-        GameObject.Find("Player").GetComponent<PlayerController>().SwitchToAnotherRandomWeapon();
     }
 }

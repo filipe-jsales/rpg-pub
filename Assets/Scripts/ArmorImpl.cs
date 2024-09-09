@@ -26,8 +26,7 @@ public class ArmorImpl : Armor
 
     public override double HandlePhysicalDamage(double damage)
     {
-        var actualDamage = (damage - ArmorConditionBonus) * (PhysicalResistance / 100);
-        Debug.Log("Actual Damage: " + actualDamage);
+        var actualDamage = (damage - ArmorConditionBonus) * ((100 - PhysicalResistance) / 100);
         return actualDamage < 0 ? 0 : actualDamage;
     }
     

@@ -1,5 +1,6 @@
 ﻿using Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Abstractions
 {
@@ -10,6 +11,7 @@ namespace Abstractions
         protected abstract void SetDamage(double value);
         protected abstract void SetPoiseDamage(int value);
         public Sprite Sprite { get; set; }
+        public UnityEvent OnInteract { get; set; }
 
         public abstract void HandleDurabilityDamage(Armor armor);
         public abstract double HandlePhysicalDamage(double baseDamage);

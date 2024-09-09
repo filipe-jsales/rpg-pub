@@ -1,6 +1,5 @@
 ﻿using Abstractions;
 using Enums;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace PrefabScripts
@@ -11,7 +10,7 @@ namespace PrefabScripts
         private WeaponEnum weaponName;
 
         [SerializeField]
-        private AnimatorController animatorController;
+        private RuntimeAnimatorController animatorController;
         
         [SerializeField]
         private Sprite sprite;
@@ -26,7 +25,7 @@ namespace PrefabScripts
         [SerializeField]
         private int weaponPoiseDamage;
 
-        public AnimatorController AnimatorController => animatorController;
+        public RuntimeAnimatorController RuntimeAnimatorController => animatorController;
         
         public Weapon GetWeapon()
         {

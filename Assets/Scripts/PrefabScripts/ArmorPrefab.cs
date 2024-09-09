@@ -1,6 +1,4 @@
 ﻿using Abstractions;
-using Enums;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace PrefabScripts

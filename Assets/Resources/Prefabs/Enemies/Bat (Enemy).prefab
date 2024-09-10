@@ -8,17 +8,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3823290685293625916, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8538975791002790759, guid: 80d5431a5eda85046b12f0d0448b9f6f, type: 3}
     - target: {fileID: 4278961492437243247, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
       propertyPath: m_Name
-      value: Goober (Enemy) Variant
+      value: Bat (Enemy)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227264408777275805, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.53125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227264408777275805, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.78125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825231184877765475, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
+      propertyPath: characterName
+      value: Bat
       objectReference: {fileID: 0}
     - target: {fileID: 8135740668753249786, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.91
+      value: -8.681671
       objectReference: {fileID: 0}
     - target: {fileID: 8135740668753249786, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.66
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: 8135740668753249786, guid: 45b48398352bd044a8a3cb2920baaead, type: 3}
       propertyPath: m_LocalPosition.z

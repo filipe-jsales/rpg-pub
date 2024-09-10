@@ -10,6 +10,7 @@ public class WeaponImpl : Weapon
     public WeaponImpl(string name, double durability, double damage, int poiseDamage)
     { 
         Name = name;
+        Knockback = new Vector2(10f, 10f);
         Init( durability, damage, poiseDamage);
     }
 

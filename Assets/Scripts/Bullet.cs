@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,17 +25,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("SolidObjects")))
         {
-            AudioManager.instance.PlayAtPoint("Goober Damage");
-            var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
-            enemyCharacter.OnHitTaken(GameManager.instance.Player);
-            if (enemyCharacter.GetHealth() <= 0)
-            {
-                Destroy(other.gameObject);
-            }
-        };
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        
     }
-
 }

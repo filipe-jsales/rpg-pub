@@ -319,6 +319,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2f2dee3702373544aaf7641162bf1656, type: 3}
   footstepDelay: 0.3
   climbSoundDelay: 0.3
+  meleeAttackRange: 1.5
 --- !u!1 &3269760174119688242
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,9 +26,13 @@ public class Bullet : MonoBehaviour
     {
         if (bulletRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
-            //TODO: refacotr to logic of damage be on the enemy
             AudioManager.instance.PlayAtPoint("Goober Damage");
-            Destroy(other.gameObject);
+            var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
+            enemyCharacter.OnHitTaken(GameManager.instance.Player);
+            if (enemyCharacter.GetHealth() <= 0)
+            {
+                Destroy(other.gameObject);
+            }
         };
         Destroy(gameObject);
     }

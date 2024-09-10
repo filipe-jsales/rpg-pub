@@ -9,6 +9,12 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField]
     private Canvas inventoryCanvas;
     
+    [SerializeField]
+    private Transform inventorySlotCanvas;
+    
+    [SerializeField]
+    private GameObject inventorySlotPrefab;
+    
     private GameManager _gameManager;
 
     private void Start()
@@ -41,8 +47,10 @@ public class InventoryUIManager : MonoBehaviour
         var items = _gameManager.Items;
         var character = _gameManager.Player;
         var images = inventoryCanvas.GetComponentsInChildren<Image>();
-        var inventorySlots =  images.Where(i => i.gameObject.name.Contains("InventorySlot")).ToArray();
         var equippedItems = images.Where(i => i.gameObject.name.Contains("Equipped")).ToArray();
+        var existingSlots = inventorySlotCanvas.gameObject.GetComponentsInChildren<Image>()
+            .Select(i => i.gameObject.name)
+            .ToArray();
 
         foreach (var equipped in equippedItems)
         {
@@ -56,18 +64,25 @@ public class InventoryUIManager : MonoBehaviour
                     break;
             }
         }
-        
-        for (int i = 0; i < inventorySlots.Length; i++)
+
+        foreach (var item in items)
         {
-            var image = inventorySlots[i];
-            var item = items[i];
-            image.sprite = item.Sprite;
-            if (image.gameObject.GetComponent<Button>() == null)
+            var componentName = "Inventory Slot - " + item.Name;
+            // TODO: se for tiver vários do mesmo item, essa lógica vai impedir de aparecer na UI
+            if (existingSlots.Contains(componentName))
             {
-                var button = image.gameObject.AddComponent<Button>();
-                button.onClick.AddListener(() => item.OnInteract.Invoke());
+                continue;
             }
             
+            var slotComponent = Instantiate(inventorySlotPrefab, inventorySlotCanvas);
+            slotComponent.name = componentName;
+            var slotImage = slotComponent.GetComponent<Image>();
+            slotImage.sprite = item.Sprite;
+            if (slotComponent.GetComponent<Button>() == null)
+            {
+                var button = slotComponent.AddComponent<Button>();
+                button.onClick.AddListener(() => item.OnInteract.Invoke());
+            }
         }
     }
 

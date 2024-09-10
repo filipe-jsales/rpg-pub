@@ -1,4 +1,6 @@
+using System;
 using Abstractions;
+using Impl;
 using PrefabScripts;
 using UnityEngine;
 
@@ -29,12 +31,19 @@ public class EnemyController : MonoBehaviour
     private LayerMask solidObjectsLayer;
     
     private Rigidbody2D _rigidbody2d;
+    private CapsuleCollider2D _playerBodyCollider;
+    
+    public EnemyCharacter EnemyCharacter;
 
-    public Character EnemyCharacter;
+    private void Awake()
+    {
+        EnemyCharacter = GenerateEnemyFromParameters();
+    }
+
     void Start()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
-        EnemyCharacter = GenerateEnemyFromParameters();
+        _playerBodyCollider = GetComponent<CapsuleCollider2D>();
     }
 
     void Update()
@@ -49,6 +58,22 @@ public class EnemyController : MonoBehaviour
             moveSpeed = -moveSpeed;
             FlipEnemyFacing();
         }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Bullets")))
+        {
+            if(other.gameObject.name == "Arrow(Clone)") Destroy(other.gameObject);
+            AudioManager.instance.PlayAtPoint("Goober Damage");
+            var player = GameManager.instance.Player;
+            EnemyCharacter.OnHitTaken(player);
+            // TODO: call animation controller, knockback = player.EquippedWeapon.Knockback
+            if (EnemyCharacter.GetHealth() <= 0)
+            {
+                Destroy(gameObject);
+            }
+        };
     }
 
     void FlipEnemyFacing()
@@ -65,10 +90,10 @@ public class EnemyController : MonoBehaviour
         }
     }
     
-    private CharacterImpl GenerateEnemyFromParameters()
+    private EnemyCharacterImpl GenerateEnemyFromParameters()
     {
         var weapon = weaponObject.GetComponent<WeaponPrefab>().GetWeapon();
         var armor = armorObject.GetComponent<ArmorPrefab>().GetArmor();
-        return new CharacterImpl(characterName, baseHealth, baseDamage, basePoise, armor, weapon);
+        return new EnemyCharacterImpl(characterName, baseHealth, baseDamage, basePoise, armor, weapon);
     }
 }

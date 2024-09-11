@@ -2,7 +2,9 @@
 {
     public interface IMagicalRpgObject
     {
-        float MagicFactor { set; } // either damage or resistance modifier
-        string ElementalFactor { set; }
+        protected void SetMagicFactor(float value);
+        protected void SetMaxMagicFactor(float value);
+        protected void SetElementalFactor(string value);
+        
     }
 }

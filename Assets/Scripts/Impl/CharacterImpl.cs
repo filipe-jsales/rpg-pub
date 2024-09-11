@@ -4,9 +4,9 @@ using UnityEngine.Events;
 
 namespace Impl
 {
-    public class EnemyCharacterImpl : EnemyCharacter
+    public class CharacterImpl: Character
     {
-        public EnemyCharacterImpl(string name, Sprite sprite, UnityEvent onInteract, int level, double experience, float baseDamage, float health, float maxHealth, int poise, int maxPoise, float mana, float maxMana, string elementAffinity, Armor equippedArmor, Weapon equippedWeapon)
+        public CharacterImpl(string name, Sprite sprite, UnityEvent onInteract, int level, double experience, float baseDamage, float health, float maxHealth, int poise, int maxPoise, float mana, float maxMana, string elementAffinity, Armor equippedArmor, Weapon equippedWeapon)
         {
             Name = name;
             Sprite = sprite;
@@ -25,4 +25,5 @@ namespace Impl
             EquippedWeapon = equippedWeapon;
         }
     }
+
 }

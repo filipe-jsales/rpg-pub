@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Impl;
 using Interfaces;
 using PrefabScripts;
 using ScriptableObjects;
@@ -62,12 +63,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (player.Character.GetHealth() <= 0)
-            {
-                player.Character.SetHealth(baseHealth);
-            }
+            if (player.Character.Health <= 0) player.Character.HandleDeath();
+            
             var prefabPath = "Prefabs/Weapons/";
-            equippedWeaponObject = Resources.Load<GameObject>(prefabPath + player.Character.Weapon.Name);
+            equippedWeaponObject = Resources.Load<GameObject>(prefabPath + player.Character.EquippedWeapon.Name);
         }
         var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
         var animator = GetComponent<Animator>();
@@ -79,20 +78,36 @@ public class PlayerController : MonoBehaviour
     {
         equippedWeaponObject = prefab.gameObject;
         GetComponent<Animator>().runtimeAnimatorController = prefab.RuntimeAnimatorController;
-        player.Character.Weapon = prefab.gameObject.GetComponent<WeaponPrefab>().GetWeapon();
+        player.Character.EquippedWeapon = prefab.gameObject.GetComponent<WeaponPrefab>().GetWeapon();
     }
     
     public void SwitchToArmor(ArmorPrefab prefab)
     {
         equippedArmorObject = prefab.gameObject;
-        player.Character.Armor = prefab.gameObject.GetComponent<ArmorPrefab>().GetArmor();
+        player.Character.EquippedArmor = prefab.gameObject.GetComponent<ArmorPrefab>().GetArmor();
     }
     
     private CharacterImpl GeneratePlayerFromParameters()
     {
         var weapon = equippedWeaponObject.GetComponent<WeaponPrefab>().GetWeapon();
         var armor = equippedArmorObject.GetComponent<ArmorPrefab>().GetArmor();
-        return new CharacterImpl(characterName, baseHealth, baseDamage, basePoise, armor, weapon);
+        return new CharacterImpl(
+            characterName, 
+            null,
+            null,
+            1,
+            0,
+            baseDamage, 
+            baseHealth,
+            baseHealth,
+            basePoise, 
+            basePoise,
+            0,
+            0,
+            "",
+            armor, 
+            weapon
+        );
     }
     
     private IRpgObject[] GetItems()

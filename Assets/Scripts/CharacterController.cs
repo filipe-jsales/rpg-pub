@@ -269,7 +269,7 @@ public class CharacterController : MonoBehaviour
             if (_isInvulnerable || !_controlsEnabled) return;
             var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
             player.Character.OnHitTaken(enemyCharacter);
-            if (player.Character.GetHealth() <= 0)
+            if (player.Character.Health <= 0)
             {
                 HandleDeath();
             }

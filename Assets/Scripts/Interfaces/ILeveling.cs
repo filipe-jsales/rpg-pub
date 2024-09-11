@@ -2,7 +2,7 @@
 {
     public interface ILeveling
     {
-        int Level { set; }
-        double Experience { set; }
+        int Level { get; set; }
+        double Experience { get; set; }
     }
 }

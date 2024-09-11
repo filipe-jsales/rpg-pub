@@ -1,5 +1,6 @@
 ﻿using System;
 using Abstractions;
+using Impl;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,14 +23,23 @@ namespace PrefabScripts
     
         [SerializeField]
         private int weaponPoiseDamage;
+        [SerializeField]
+        private float weaponKnockbackValue;
 
         public RuntimeAnimatorController RuntimeAnimatorController => animatorController;
         
         public Weapon GetWeapon()
         {
-            var weapon = new WeaponImpl(gameObject.name, weaponDurability, weaponDamage, weaponPoiseDamage);
-            weapon.Sprite = sprite;
-            weapon.OnInteract = OnInteract();
+            var weapon = new WeaponImpl(
+                gameObject.name,
+                sprite,
+                OnInteract(),
+                new Vector2(weaponKnockbackValue, weaponKnockbackValue),
+                weaponDurability, 
+                weaponDurability, 
+                weaponDamage, 
+                weaponPoiseDamage
+            );
             return weapon;
         }
 

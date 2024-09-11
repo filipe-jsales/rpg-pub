@@ -8,37 +8,50 @@ namespace Abstractions
     {
         public string Name { get; set; }
         public Sprite Sprite { get; set; }
-        public Vector2 Knockback { get; set; }
+
         public UnityEvent OnInteract { get; set; }
-        protected abstract void SetDurability(float value);
-        protected abstract void SetMaxDurability(float value);
-        protected abstract void SetDamage(float value);
-        protected abstract void SetPoiseDamage(int value);
-        
-        
+        public Vector2 KnockbackAmount { get; set; }
 
-        public abstract void HandleDurabilityDamage(Armor armor);
-        public abstract float HandlePhysicalDamage(float baseDamage);
-        public abstract int HandlePoiseDamage();
+        public float Durability { get; set; }
+        public float MaxDurability { get; set; }
+        public float Damage { get; set; }
+        public int PoiseDamage { get; set; }
 
-        public float HealthFactor
+        public virtual void HandleDurabilityDamage(Armor armor)
         {
-            set => SetDurability(value);
-        }
-        
-        public float MaxHealthFactor
-        {
-            set => SetMaxDurability(value);
+            var attemptedDamage = armor.HandlePhysicalDamage(Damage);
+            Durability -= Damage / attemptedDamage;
         }
 
-        public float DamageFactor
+        public virtual float HandlePhysicalDamage(float baseDamage)
         {
-            set => SetDamage(value);
+            return Damage + baseDamage;
         }
 
-        public int PoiseFactor
+
+        void IRpgObject.SetHealthFactor(float value)
         {
-            set => SetPoiseDamage(value);
+            Durability = value;
+        }
+
+        void IRpgObject.SetMaxHealthFactor(float value)
+        {
+            MaxDurability = value;
+        }
+
+        void IRpgObject.SetPoiseFactor(int value)
+        {
+            PoiseDamage = value;
+        }
+
+        void IRpgObject.SetMaxPoiseFactor(int value)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        void IRpgObject.SetDamageFactor(float value)
+        {
+            Damage = value;
         }
     }
 }

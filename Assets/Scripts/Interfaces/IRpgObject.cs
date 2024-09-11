@@ -3,16 +3,20 @@ using UnityEngine.Events;
 
 namespace Interfaces
 {
-    // TODO: add sprites here
     public interface IRpgObject
     {
+        //Common name attributes
         string Name {  get; set; }
-        float HealthFactor { set; } // either actual health or durability
-        float MaxHealthFactor { set; }
-        float DamageFactor { set; } // either damage/damage modifier or resistance
-        int PoiseFactor { set; } // either poise damage modifier or poise total modifier
         
+        // Unity attributes
         Sprite Sprite {  get; set; }
         UnityEvent OnInteract { get; set; }
+        
+        //Different name per implementation attributes
+        protected void SetHealthFactor(float value);
+        protected void SetMaxHealthFactor(float value);
+        protected void SetPoiseFactor(int value);
+        protected void SetMaxPoiseFactor(int value);
+        protected void SetDamageFactor(float value);
     }
 }

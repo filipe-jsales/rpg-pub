@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Abstractions;
 using Impl;
 using PrefabScripts;
@@ -74,19 +75,36 @@ public class EnemyController : MonoBehaviour
             if(other.gameObject.name == "Arrow(Clone)") Destroy(other.gameObject);
             AudioManager.instance.PlayAtPoint("Goober Damage");
             var player = GameManager.instance.Player;
+            
             EnemyCharacter.OnHitTaken(player);
-            // TODO: call animation controller, knockback = player.EquippedWeapon.Knockback
-            if (EnemyCharacter.GetHealth() <= 0)
-            {
-                Destroy(gameObject);
-            }
+            HandleKnockback(player);
+            HandleDeath();
         };
     }
 
     public void OnHitTaken(Character attacker)
     {
         EnemyCharacter.OnHitTaken(attacker);
-        if (EnemyCharacter.GetHealth() <= 0)
+        var player = GameManager.instance.Player;
+        
+        HandleKnockback(player);
+        HandleDeath();
+    }
+
+    private void HandleKnockback(Character player)
+    {
+        var poise = EnemyCharacter.getTotalCurrentPoise();
+        if (poise <= 0)
+        {
+            EnemyCharacter.HandleBrokenPoise();
+            Vector2 knockbackAmount = player.EquippedWeapon.KnockbackAmount;
+            // TODO: do knockback
+        }
+    }
+    
+    private void HandleDeath()
+    {
+        if (EnemyCharacter.Health <= 0)
         {
             Destroy(gameObject);
         }
@@ -96,6 +114,22 @@ public class EnemyController : MonoBehaviour
     {
         var weapon = weaponObject.GetComponent<WeaponPrefab>().GetWeapon();
         var armor = armorObject.GetComponent<ArmorPrefab>().GetArmor();
-        return new EnemyCharacterImpl(characterName, baseHealth, baseDamage, basePoise, armor, weapon);
+        return new EnemyCharacterImpl(
+            characterName, 
+            null,
+            null,
+            1,
+            0,
+            baseDamage, 
+            baseHealth, 
+            baseHealth, 
+            basePoise,
+            basePoise,
+            0,
+            0,
+            "",
+            armor, 
+            weapon
+        );
     }
 }

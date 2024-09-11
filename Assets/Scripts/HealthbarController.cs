@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthbarController: MonoBehaviour
 {
@@ -15,6 +14,6 @@ public class HealthbarController: MonoBehaviour
     private void Update()
     {
         var character = isPlayer ? GameManager.instance.Character : transform.parent.parent.GetComponent<EnemyController>().EnemyCharacter;
-        _healthTransform.localScale = new Vector3(character.GetHealth() / character.GetMaxHealth(), 1f);
+        _healthTransform.localScale = new Vector3(character.Health / character.MaxHealth, 1f);
     }
 }

@@ -99,13 +99,13 @@ public class InventoryUIManager : MonoBehaviour
                     textComponent.text = text +": " + character.Name;
                     break;
                 case "Health":
-                    textComponent.text = text +": " + character.Health;
+                    textComponent.text = text +": " + character.MaxHealth;
                     break;
                 case "Base Damage":
                     textComponent.text = text +": " + character.BaseDamage;
                     break;
                 case "Base Poise":
-                    textComponent.text = text +": " + character.BasePoise;
+                    textComponent.text = text +": " + character.MaxPoise;
                     break;
                 case "Weapon Name":
                     textComponent.text = text +": " + character.EquippedWeapon.Name;

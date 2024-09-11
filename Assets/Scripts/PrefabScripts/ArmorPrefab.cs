@@ -1,4 +1,5 @@
 ﻿using Abstractions;
+using Impl;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,9 +23,16 @@ namespace PrefabScripts
         
         public Armor GetArmor()
         {
-            var armor = new ArmorImpl(gameObject.name, armorDurability, armorResistance, armorPoise);
-            armor.Sprite = sprite;
-            armor.OnInteract = OnInteract();
+            var armor = new ArmorImpl(
+                gameObject.name, 
+                sprite,
+                OnInteract(),
+                armorDurability, 
+                armorDurability,
+                armorResistance, 
+                armorPoise,
+                armorPoise
+            );
             return armor;
         }
         

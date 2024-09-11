@@ -4,7 +4,8 @@ namespace Interfaces
 {
     public interface IEquipment
     {
-        Armor Armor { set; }
-        Weapon Weapon { set; }
+        //Different name per implementation attributes
+        protected void SetArmor(Armor armor);
+        protected void SetWeapon(Weapon armor);
     }
 }

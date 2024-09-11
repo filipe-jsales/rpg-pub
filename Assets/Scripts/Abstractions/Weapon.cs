@@ -10,22 +10,28 @@ namespace Abstractions
         public Sprite Sprite { get; set; }
         public Vector2 Knockback { get; set; }
         public UnityEvent OnInteract { get; set; }
-        protected abstract void SetDurability(double value);
-        protected abstract void SetDamage(double value);
+        protected abstract void SetDurability(float value);
+        protected abstract void SetMaxDurability(float value);
+        protected abstract void SetDamage(float value);
         protected abstract void SetPoiseDamage(int value);
         
         
 
         public abstract void HandleDurabilityDamage(Armor armor);
-        public abstract double HandlePhysicalDamage(double baseDamage);
+        public abstract float HandlePhysicalDamage(float baseDamage);
         public abstract int HandlePoiseDamage();
 
-        public double HealthFactor
+        public float HealthFactor
         {
             set => SetDurability(value);
         }
+        
+        public float MaxHealthFactor
+        {
+            set => SetMaxDurability(value);
+        }
 
-        public double DamageFactor
+        public float DamageFactor
         {
             set => SetDamage(value);
         }

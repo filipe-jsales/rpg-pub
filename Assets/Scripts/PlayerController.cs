@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Interfaces;
 using PrefabScripts;
 using ScriptableObjects;
@@ -15,9 +16,9 @@ public class PlayerController : MonoBehaviour
     
     [Header("Player Stats")]
     [SerializeField]
-    private double baseHealth;
+    private float baseHealth;
     [SerializeField]
-    private double baseDamage;
+    private float baseDamage;
     [SerializeField]
     private int basePoise;
     [SerializeField] 

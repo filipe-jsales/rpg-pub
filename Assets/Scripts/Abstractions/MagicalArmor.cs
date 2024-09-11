@@ -4,12 +4,12 @@ namespace Abstractions
 {
     public abstract class MagicalArmor : Armor, IMagicalRpgObject
     {
-        protected abstract void SetMagicResistance(double value);
+        protected abstract void SetMagicResistance(float value);
         protected abstract void SetResistanceElement(string value);
 
         public abstract int HandleMagicalDamage(int damage);
 
-        public double MagicFactor
+        public float MagicFactor
         {
             set => SetMagicResistance(value);
         }

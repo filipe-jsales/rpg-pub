@@ -3,25 +3,26 @@ using UnityEngine;
 
 public class WeaponImpl : Weapon
 {
-    private double Durability { get; set; }
-    private double Damage { get; set; }
+    private float Durability { get; set; }
+    private float MaxDurability { get; set; }
+    private float Damage { get; set; }
     private int PoiseDamage { get; set; }
 
-    public WeaponImpl(string name, double durability, double damage, int poiseDamage)
+    public WeaponImpl(string name, float durability, float damage, int poiseDamage)
     { 
         Name = name;
         Knockback = new Vector2(10f, 10f);
         Init( durability, damage, poiseDamage);
     }
 
-    private void Init(double durability, double damage, int poiseDamage)
+    private void Init(float durability, float damage, int poiseDamage)
     {
         SetDurability(durability);
         SetDamage(damage);
         SetPoiseDamage(poiseDamage);
     }
 
-    public override double HandlePhysicalDamage(double baseDamage)
+    public override float HandlePhysicalDamage(float baseDamage)
     {
         return Damage + baseDamage;
     }
@@ -39,12 +40,17 @@ public class WeaponImpl : Weapon
     }
 
 
-    protected override void SetDurability(double value)
+    protected override void SetDurability(float value)
+    {
+        Durability = value;
+    }
+    
+    protected override void SetMaxDurability(float value)
     {
         Durability = value;
     }
 
-    protected override void SetDamage(double value)
+    protected override void SetDamage(float value)
     {
         Damage = value;
     }

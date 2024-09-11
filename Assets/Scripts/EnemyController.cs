@@ -11,10 +11,10 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     [Header("Player Stats")]
-    private double baseHealth;
+    private float baseHealth;
     
     [SerializeField]
-    private double baseDamage;
+    private float baseDamage;
     
     [SerializeField]
     private int basePoise;

@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CharacterImpl: Character
 {
-    public double Health { get; private set; }
-    public double Mana { get; private set; }
-    public double BaseDamage { get; private set; }
+    public float Health { get; private set; }
+    public float MaxHealth { get; private set; }
+    public float Mana { get; private set; }
+    public float BaseDamage { get; private set; }
     public int BasePoise { get; private set; }
     public string ElementalAffinity { get; private set; }
     public new int Level { get; private set; }
@@ -13,17 +14,18 @@ public class CharacterImpl: Character
     public Armor EquippedArmor { get; private set; }
     public Weapon EquippedWeapon { get; private set; }
 
-    public CharacterImpl(string name, double health, double baseDamage, int basePoise, Armor equippedArmor, Weapon equippedWeapon)
+    public CharacterImpl(string name, float health, float baseDamage, int basePoise, Armor equippedArmor, Weapon equippedWeapon)
     {
         Name = name;
         Health = health;
+        MaxHealth = health;
         BaseDamage = baseDamage;
         BasePoise = basePoise;
         EquippedArmor = equippedArmor;
         EquippedWeapon = equippedWeapon;
     }
 
-    public override double OnHit(Armor armor)
+    public override float OnHit(Armor armor)
     {
         EquippedWeapon.HandleDurabilityDamage(armor);
         return EquippedWeapon.HandlePhysicalDamage(BaseDamage);
@@ -40,17 +42,27 @@ public class CharacterImpl: Character
         SetHealth(Health - damageTaken);
     }
 
-    public override double GetHealth()
+    public override float GetHealth()
     {
         return Health;
     }
 
-    public override void SetHealth(double value)
+    public override void SetHealth(float value)
     {
         Health = value;
     }
+    
+    public override float GetMaxHealth()
+    {
+        return MaxHealth;
+    }
 
-    protected override void SetBaseDamage(double value)
+    public override void SetMaxHealth(float value)
+    {
+        MaxHealth = value;
+    }
+
+    protected override void SetBaseDamage(float value)
     {
         BaseDamage = value;
     }
@@ -60,7 +72,7 @@ public class CharacterImpl: Character
         BasePoise = value;
     }
 
-    protected override void SetMana(double value)
+    protected override void SetMana(float value)
     {
         Mana = value;
     }

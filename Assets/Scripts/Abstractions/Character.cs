@@ -6,10 +6,11 @@ namespace Abstractions
 {
     public abstract class Character : IRpgObject, IMagicalRpgObject, ILeveling, IEquipment, IHitDetectable
     {
-        public abstract void SetHealth(double value);
-        protected abstract void SetBaseDamage(double value);
+        public abstract void SetHealth(float value);
+        public abstract void SetMaxHealth(float value);
+        protected abstract void SetBaseDamage(float value);
         protected abstract void SetBasePoise(int value);
-        protected abstract void SetMana(double value);
+        protected abstract void SetMana(float value);
         protected abstract void SetElementalAffinity(string value);
         protected abstract void SetLevel(int value);
         protected abstract void SetExperience(double value);
@@ -22,9 +23,10 @@ namespace Abstractions
         public Sprite Sprite { get; set; }
         public UnityEvent OnInteract { get; set; }
 
-        public abstract double GetHealth();
+        public abstract float GetHealth();
+        public abstract float GetMaxHealth();
 
-        public abstract double OnHit(Armor armor);
+        public abstract float OnHit(Armor armor);
         public abstract void OnHitTaken(Character attacker);
 
         public int Level
@@ -49,12 +51,17 @@ namespace Abstractions
             set => SetEquippedWeapon(value);
         }
 
-        public double HealthFactor
+        public float HealthFactor
         {
             set => SetHealth(value);
         }
+        
+        public float MaxHealthFactor
+        {
+            set => SetMaxHealth(value);
+        }
 
-        public double DamageFactor
+        public float DamageFactor
         {
             set => SetBaseDamage(value);
         }
@@ -64,7 +71,7 @@ namespace Abstractions
             set => SetBasePoise(value);
         }
 
-        public double MagicFactor
+        public float MagicFactor
         {
             set => SetMana(value);
         }

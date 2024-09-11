@@ -1,4 +1,5 @@
 using System.Collections;
+using Abstractions;
 using Interfaces;
 using ScriptableObjects;
 using TMPro;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI scoreText;
 
     public CharacterImpl Player => player.Character as CharacterImpl;
+    public Character Character => player.Character;
     public IRpgObject[] Items => player.Items;
 
     private void Awake()

@@ -12,10 +12,10 @@ namespace PrefabScripts
         
         [SerializeField]
         [Header("Weapon Information")]
-        private double armorDurability;
+        private float armorDurability;
     
         [SerializeField]
-        private double armorResistance;
+        private float armorResistance;
     
         [SerializeField]
         private int armorPoise;

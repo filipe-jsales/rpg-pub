@@ -7,23 +7,29 @@ namespace Abstractions
 {
     public abstract class Armor : IRpgObject
     {
-        protected abstract void SetDurability(double value);
-        protected abstract void SetPhysicalResistance(double value);
+        protected abstract void SetDurability(float value);
+        protected abstract void SetMaxDurability(float value);
+        protected abstract void SetPhysicalResistance(float value);
         protected abstract void SetPoise(int value);
-        public abstract void HandleDurabilityDamage(double damage);
-        public abstract double HandlePhysicalDamage(double damage);
+        public abstract void HandleDurabilityDamage(float damage);
+        public abstract float HandlePhysicalDamage(float damage);
         public abstract void HandlePoiseDamage(Weapon weapon);
 
         public string Name { get; set; }
         public Sprite Sprite { get; set; }
         public UnityEvent OnInteract { get; set; }
 
-        public double HealthFactor
+        public float HealthFactor
         {
             set => SetDurability(value);
         }
+        
+        public float MaxHealthFactor
+        {
+            set => SetMaxDurability(value);
+        }
 
-        public double DamageFactor
+        public float DamageFactor
         {
             set => SetPhysicalResistance(value);
         }

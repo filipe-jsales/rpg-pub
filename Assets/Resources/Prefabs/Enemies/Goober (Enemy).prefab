@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8135740668753249786}
   - component: {fileID: 3823290685293625916}
   - component: {fileID: 7997404193974040526}
-  - component: {fileID: 5060985805046332511}
+  - component: {fileID: 703759507923526145}
   - component: {fileID: 1044897851486391254}
   - component: {fileID: 8588267830384723176}
   - component: {fileID: 6825231184877765475}
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5060985805046332511
+--- !u!114 &703759507923526145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,12 +128,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4278961492437243247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1cc751eed00b9d43a2a53e37abeaa7d, type: 3}
+  m_Script: {fileID: 11500000, guid: c41852631ebf95045a2a424d3149e5f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog:
-    lines:
-    - "Ol\xE1"
+  dialogue: {fileID: 11400000, guid: afcb35ec96a41024d854c0bd83a18f2a, type: 2}
 --- !u!70 &1044897851486391254
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -215,13 +213,7 @@ MonoBehaviour:
   solidObjectsLayer:
     serializedVersion: 2
     m_Bits: 128
-  deathSounds:
-  - {fileID: 8300000, guid: 4f6c06d5f4da6c84385abd44938ab418, type: 3}
-  - {fileID: 8300000, guid: 1cb8927fad33afc44a62520757de5e16, type: 3}
-  - {fileID: 8300000, guid: 761b091d37a6cd844ac7f8138cb98df1, type: 3}
-  - {fileID: 8300000, guid: 3f62021f1d81b354f92462173a61c6a0, type: 3}
-  - {fileID: 8300000, guid: a0b13e1fd6567b4498aae5232499ebd7, type: 3}
-  - {fileID: 8300000, guid: 7711c42ed22687f458eaf246c574ef3b, type: 3}
+  startMovingRight: 1
 --- !u!61 &6227264408777275805
 BoxCollider2D:
   m_ObjectHideFlags: 0

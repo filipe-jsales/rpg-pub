@@ -35,6 +35,9 @@ public class EnemyController : MonoBehaviour
     
     public EnemyCharacter EnemyCharacter;
 
+    [SerializeField]
+    private bool startMovingRight = true;
+
     private void Awake()
     {
         EnemyCharacter = GenerateEnemyFromParameters();
@@ -48,7 +51,13 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        _rigidbody2d.velocity = new Vector2(moveSpeed, 0f);
+        if (startMovingRight)
+        {
+            _rigidbody2d.velocity = new Vector2(moveSpeed, 0f);
+        } else
+        {
+            _rigidbody2d.velocity = new Vector2(-moveSpeed, 0f);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)

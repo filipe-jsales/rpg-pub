@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 337916160841965808, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_Name
-      value: Bat (Enemy) Variant
+      value: Bat (Enemy)
       objectReference: {fileID: 0}
     - target: {fileID: 2411938075806801918, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_Size.x
@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1007.7329
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 588.73236
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.3807673
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -131,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: characterName
       value: Bat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: startMovingRight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: solidObjectsLayer.m_Bits

@@ -27,6 +27,7 @@ public class CharacterController : MonoBehaviour
     private bool _isDying = false;
     private bool _isInvulnerable = false;
     private bool isOnGround = false;
+    private bool _controlsEnabled = true;
 
     [Header("Player SFX")][SerializeField]
     AudioClip[] footstepSounds;
@@ -61,7 +62,7 @@ public class CharacterController : MonoBehaviour
 
     public void Update()
     {
-        if (!_isAlive) { return; }
+        if (!_isAlive || !_controlsEnabled) { return; }
         Run();
         FlipSprite();
         OnClimbLadder();
@@ -77,10 +78,21 @@ public class CharacterController : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
-        if (!_isAlive) { return; }
+        if (!_isAlive || !_controlsEnabled) { return; }
         _moveInput = value.Get<Vector2>();
     }
 
+    public void DisablePlayerControls()
+    {
+        _controlsEnabled = false;
+        _playerRigidBody.velocity = Vector2.zero;
+        _animator.SetBool("isRunning", false);
+    }
+
+    public void EnablePlayerControls()
+    {
+        _controlsEnabled = true;
+    }
     private void Run()
     {
         Vector2 playerVelocity = new Vector2(_moveInput.x * _playerController.runSpeed, _playerRigidBody.velocity.y);
@@ -89,9 +101,9 @@ public class CharacterController : MonoBehaviour
         bool playerHasHorizontalSpeed = Mathf.Abs(_playerRigidBody.velocity.x) > Mathf.Epsilon;
         _animator.SetBool("isRunning", playerHasHorizontalSpeed);
 
-        bool isOnGround = checkIfPlayerIsOnGround();
+        bool isOnGround = CheckIfPlayerIsOnGround();
 
-        if (playerHasHorizontalSpeed && isOnGround)
+        if (playerHasHorizontalSpeed && isOnGround || !_controlsEnabled)
         {
             GetFootSteps();
         }
@@ -110,8 +122,8 @@ public class CharacterController : MonoBehaviour
 
     void OnMeleeAttack(InputValue value)
     {
-        if (!_isAlive) { return; }
-        if (value.isPressed)
+        if (!_isAlive || !_controlsEnabled) { return; }
+        if (value.isPressed || !_controlsEnabled)
         {
             LayerMask enemyLayer = LayerMask.GetMask("Enemies");
             Vector2 attackDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
@@ -128,14 +140,6 @@ public class CharacterController : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.OnHitTaken(player.Character);
-                    // if (player.Character.GetHealth() <= 0)
-                    // {
-                    //     HandleDeath();
-                    // }
-                    // else
-                    // {
-                    //     StartCoroutine(OnDamageTaken());
-                    // }
                 }
             }
         }
@@ -143,10 +147,10 @@ public class CharacterController : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        if (!_isAlive) { return; }
+        if (!_isAlive || !_controlsEnabled) { return; }
         bool isOnGround = _playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects", "Climbing", "Hazards"));
 
-        if (!isOnGround) return;
+        if (!isOnGround || !_controlsEnabled ) return;
 
         if (value.isPressed)
         {
@@ -159,7 +163,7 @@ public class CharacterController : MonoBehaviour
     {
         //TODO: refactor this method to allow multiple weapons attacks
         //FIXME: sometimes on enter play it is instatiating a bullet without firing click
-        if (!_isAlive) { return; }
+        if (!_isAlive || !_controlsEnabled) { return; }
         if (value.isPressed)
         {
             _animator.SetBool("isShootingArrow", true);
@@ -182,7 +186,7 @@ public class CharacterController : MonoBehaviour
 
     private void OnDash(InputValue value)
     {
-        if (!_isAlive || !_playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects")) || !_playerController.canDash) return;
+        if (!_isAlive || !_playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects")) || !_playerController.canDash || !_controlsEnabled) return;
 
         _animator.SetBool("isDashing", true);
 
@@ -212,7 +216,7 @@ public class CharacterController : MonoBehaviour
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(_playerRigidBody.velocity.x) > Mathf.Epsilon;
 
-        if (playerHasHorizontalSpeed)
+        if (playerHasHorizontalSpeed || !_controlsEnabled)
         {
             transform.localScale = new Vector2(Mathf.Sign(_playerRigidBody.velocity.x), 1f);
 
@@ -224,7 +228,7 @@ public class CharacterController : MonoBehaviour
     }
     private void OnClimbLadder()
     {
-        if (!_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) || !_controlsEnabled)
         {
             _playerRigidBody.gravityScale = _gravityScaleAtStart;
             _animator.SetBool("isClimbing", false);
@@ -256,13 +260,13 @@ public class CharacterController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) || !_controlsEnabled)
         {
             HandleDeath();
         }
-        if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")) || !_controlsEnabled)
         {
-            if (_isInvulnerable) return;
+            if (_isInvulnerable || !_controlsEnabled) return;
             var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
             player.Character.OnHitTaken(enemyCharacter);
             if (player.Character.GetHealth() <= 0)
@@ -278,8 +282,7 @@ public class CharacterController : MonoBehaviour
 
     private void HandleDeath()
     {
-        if (!_isAlive) return;
-        //FIXME: on death if player continues pressing running buttons will reload a lot of times the next level
+        if (!_isAlive || !_controlsEnabled) return;
         _isAlive = false;
         _isDying = true;
         _animator.SetTrigger("isDying");
@@ -290,7 +293,7 @@ public class CharacterController : MonoBehaviour
 
     private IEnumerator OnDamageTaken()
     {
-        if (_isDying) yield break;
+        if (_isDying || !_controlsEnabled) yield break;
         _isInvulnerable = true;
         float elapsed = 0f;
         while (elapsed < _playerController.immortalityDuration)
@@ -303,7 +306,7 @@ public class CharacterController : MonoBehaviour
         _spriteRenderer.enabled = true;
         _isInvulnerable = false;
     }
-    private bool checkIfPlayerIsOnGround()
+    private bool CheckIfPlayerIsOnGround()
     {
         return _playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects", "Climbing", "Hazards"));
     }

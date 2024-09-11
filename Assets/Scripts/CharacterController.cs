@@ -173,7 +173,8 @@ public class CharacterController : MonoBehaviour
     private IEnumerator ShootingArrow()
     {
         yield return new WaitForSeconds(0.2f);
-        Quaternion arrowRotation = Quaternion.Euler(0, 0, -45);
+        var arrowRotation =
+            transform.localScale.x < 0 ? Quaternion.Euler(0, 0, -225) : Quaternion.Euler(0, 0, -45);
         Instantiate(bulletPrefab, firePoint.position, arrowRotation);
 
         _animator.SetBool("isShootingArrow", false);

@@ -40,6 +40,7 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        if(startMovingRight) moveSpeed = -moveSpeed;
         EnemyCharacter = GenerateEnemyFromParameters();
     }
 
@@ -47,26 +48,23 @@ public class EnemyController : MonoBehaviour
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _playerBodyCollider = GetComponent<CapsuleCollider2D>();
+        
     }
-
-    void Update()
+    
+    void FixedUpdate()
     {
-        if (startMovingRight)
-        {
-            _rigidbody2d.velocity = new Vector2(moveSpeed, 0f);
-        } else
-        {
-            _rigidbody2d.velocity = new Vector2(-moveSpeed, 0f);
-        }
-    }
+        // Check for solid objects in front
+        var hit = Physics2D.Raycast(transform.position, -transform.right, 0.1f, solidObjectsLayer);
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (((1 << collision.gameObject.layer) & solidObjectsLayer) != 0)
+        if (hit.collider != null)
         {
+            // Reverse direction if a solid object is found
             moveSpeed = -moveSpeed;
-            FlipEnemyFacing();
+            transform.localScale = new Vector2(-transform.localScale.x, 1f);
         }
+        
+        // Move the character
+        _rigidbody2d.velocity = new Vector2(moveSpeed, _rigidbody2d.velocity.y);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -83,11 +81,6 @@ public class EnemyController : MonoBehaviour
                 Destroy(gameObject);
             }
         };
-    }
-
-    void FlipEnemyFacing()
-    {
-        transform.localScale = new Vector2(-(Mathf.Sign(_rigidbody2d.velocity.x)), 1f);
     }
 
     public void OnHitTaken(Character attacker)

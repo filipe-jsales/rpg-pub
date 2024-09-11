@@ -28,6 +28,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3414515274675481200, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: m_Size.x
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414515274675481200, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -67,6 +75,14 @@ PrefabInstance:
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924043522007122625, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924043522007122625, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5924043522007122625, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -134,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: startMovingRight
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: solidObjectsLayer.m_Bits

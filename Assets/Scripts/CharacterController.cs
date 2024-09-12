@@ -40,6 +40,7 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private float meleeAttackRange = 1.5f;
 
+
     private void Start()
     {
         _playerRigidBody = GetComponent<Rigidbody2D>();

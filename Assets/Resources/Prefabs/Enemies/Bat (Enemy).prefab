@@ -38,11 +38,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -9.96
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4181625837845229404, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -149,8 +149,16 @@ PrefabInstance:
       value: Bat
       objectReference: {fileID: 0}
     - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: detectionRange
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: startMovingRight
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6398383130694429319, guid: 48d24685a05e86146863f71ceacf1ddf, type: 3}
       propertyPath: solidObjectsLayer.m_Bits

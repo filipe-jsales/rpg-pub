@@ -10,7 +10,6 @@ public class EnemyAnimationController : MonoBehaviour, IUnityAnimations
     {
         _character = GetComponent<EnemyController>().EnemyCharacter;
         AnimationManager.Instance.InitEvent(gameObject.name);
-        UseRunAnimation(gameObject.name);
     }
 
     // private void Update()
@@ -25,7 +24,9 @@ public class EnemyAnimationController : MonoBehaviour, IUnityAnimations
     //     UseRunAnimation(gameObject.name);
     // }
 
-    public void UseDashAnimation(string objectName) => _character.UseDashAnimation(objectName);
-    public void UseRunAnimation(string objectName) => _character.UseRunAnimation(objectName);
+    public void UseDashAnimation(string objectName, bool isActive) => _character.UseDashAnimation(gameObject.name, isActive);
+    public void UseRunAnimation(string objectName, bool isActive) => _character.UseRunAnimation(gameObject.name, isActive);
+
+    public void UseIdleAnimation(string objectName, bool isActive) => _character.UseIdleAnimation(gameObject.name, isActive);
 
 }

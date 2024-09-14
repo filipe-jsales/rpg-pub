@@ -1,15 +1,16 @@
-﻿using Enums;
+﻿using System;
+using Enums;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Abstractions
 {
-    public abstract class Armor : IRpgObject
+    public abstract class Armor : IRpgObject, IHasObtainedDate
     {
         public string Name { get; set; }
-
-        public Sprite Sprite { get; set; }
+        public Sprite Sprite { set; get; }
+        public DateTime ObtainedDate { get; set; }
 
         public UnityEvent OnInteract { get; set; }
         

@@ -1,13 +1,15 @@
-﻿using Interfaces;
+﻿using System;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Abstractions
 {
-    public abstract class Weapon : IRpgObject
+    public abstract class Weapon : IRpgObject, IHasObtainedDate
     {
         public string Name { get; set; }
         public Sprite Sprite { get; set; }
+        public DateTime ObtainedDate { get; set; }
 
         public UnityEvent OnInteract { get; set; }
         public Vector2 KnockbackAmount { get; set; }

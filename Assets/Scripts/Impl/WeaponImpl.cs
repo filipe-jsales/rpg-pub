@@ -1,4 +1,5 @@
-﻿using Abstractions;
+﻿using System;
+using Abstractions;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,8 @@ namespace Impl
             MaxDurability = maxDurability;
             Damage = damage;
             PoiseDamage = poiseDamage;
+            // TODO: create actual implementation
+            ObtainedDate = DateTime.Now;
         }
     }
 

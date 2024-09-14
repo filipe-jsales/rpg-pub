@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public CharacterImpl Player => player.Character as CharacterImpl;
     public Character Character => player.Character;
     public IRpgObject[] Items => player.Items;
+    
+    private InventoryUIManager _inventoryUIManager;
 
     private void Awake()
     {
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         livesText.text = playerLives.ToString();
         scoreText.text = score.ToString();
+        _inventoryUIManager = GetComponent<InventoryUIManager>();
     }
 
     public void ProcessPlayerDeath()
@@ -96,5 +99,15 @@ public class GameManager : MonoBehaviour
     {
         score += points;
         scoreText.text = score.ToString();
+    }
+
+    public void ShowItemDescription(IRpgObject item, Transform itemTransform)
+    {
+        _inventoryUIManager.ShowItemDescription(item, itemTransform);
+    }
+    
+    public void DestroyCurrentItemDescription()
+    {
+        _inventoryUIManager.DestroyCurrentItemDescription();
     }
 }

@@ -126,6 +126,8 @@ public class CharacterController : MonoBehaviour
         if (!_isAlive || !_controlsEnabled) { return; }
         if (value.isPressed || !_controlsEnabled)
         {
+            _animator.SetBool("isAttacking", true);
+            StartCoroutine(StopAttacking());
             LayerMask enemyLayer = LayerMask.GetMask("Enemies");
             Vector2 attackDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
 
@@ -144,6 +146,13 @@ public class CharacterController : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private IEnumerator StopAttacking()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        _animator.SetBool("isAttacking", false);
     }
 
     private void OnJump(InputValue value)

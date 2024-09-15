@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 7fdd88ba101c25e42ba4f70095c505f3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8191059255157184141
+    second: Player_Griea v4_0
+  - first:
+      213: -7280702349184897476
+    second: Player_Griea v4_1
+  - first:
+      213: 458216507792812160
+    second: Player_Griea v4_2
+  - first:
+      213: 4247751116488490964
+    second: Player_Griea v4_3
+  - first:
+      213: -2544223978717222355
+    second: Player_Griea v4_4
+  - first:
+      213: -1934320663851955079
+    second: Player_Griea v4_5
+  - first:
+      213: 3475408948463383491
+    second: Player_Griea v4_6
+  - first:
+      213: 6059215732295882405
+    second: Player_Griea v4_7
+  - first:
+      213: -3328885451439587522
+    second: Player_Griea v4_8
+  - first:
+      213: -7607301090645881534
+    second: Player_Griea v4_9
+  - first:
+      213: -8331447260100502809
+    second: Player_Griea v4_10
+  - first:
+      213: 679279145797878908
+    second: Player_Griea v4_11
+  - first:
+      213: 5412090817533281613
+    second: Player_Griea v4_12
+  - first:
+      213: 1522858982523676307
+    second: Player_Griea v4_13
+  - first:
+      213: 1008679846024616892
+    second: Player_Griea v4_14
+  - first:
+      213: -8402644387604531454
+    second: Player_Griea v4_15
+  - first:
+      213: 3303211638001546320
+    second: Player_Griea v4_16
+  - first:
+      213: -522815763714499395
+    second: Player_Griea v4_17
+  - first:
+      213: 7017343891880332292
+    second: Player_Griea v4_18
+  - first:
+      213: 3482741326069510621
+    second: Player_Griea v4_19
+  - first:
+      213: -7126165666636307084
+    second: Player_Griea v4_20
+  - first:
+      213: -3080860234157204971
+    second: Player_Griea v4_21
+  - first:
+      213: 7188946124554983189
+    second: Player_Griea v4_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player_Griea v4_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 192
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d86d1d59efc7ca170800000000000000
+      internalID: 8191059255157184141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 192
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3e6b79c9cfb5fa90800000000000000
+      internalID: -7280702349184897476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 192
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 088e5317c79eb5600800000000000000
+      internalID: 458216507792812160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 144
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dfb098822b03fa30800000000000000
+      internalID: 4247751116488490964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_4
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 144
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2a678f65c911bcd0800000000000000
+      internalID: -2544223978717222355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_5
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 144
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97c086dca99e725e0800000000000000
+      internalID: -1934320663851955079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_6
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 144
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c3bf5e66022b3030800000000000000
+      internalID: 3475408948463383491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_7
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 144
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a654fcfa98a61450800000000000000
+      internalID: 6059215732295882405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 96
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3f3af0b15c6dc1d0800000000000000
+      internalID: -3328885451439587522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_9
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 96
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24d4c9896ff6d6690800000000000000
+      internalID: -7607301090645881534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_10
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 96
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eadeccdbd0c06c80800000000000000
+      internalID: -8331447260100502809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_11
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 96
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c740d9cb8c84d6900800000000000000
+      internalID: 679279145797878908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_12
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 96
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45893f8ceb9b1b40800000000000000
+      internalID: 5412090817533281613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_13
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 48
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39626581d28422510800000000000000
+      internalID: 1522858982523676307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_14
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb946ac9fc8ffd00800000000000000
+      internalID: 1008679846024616892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_15
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 48
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 207f6e6d27fc36b80800000000000000
+      internalID: -8402644387604531454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_16
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 48
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 054b40dcb7d57dd20800000000000000
+      internalID: 3303211638001546320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_17
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc92d835d59eb8f0800000000000000
+      internalID: -522815763714499395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_18
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 2
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cc846171d926160800000000000000
+      internalID: 7017343891880332292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 2
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd132f0a8ce255030800000000000000
+      internalID: 3482741326069510621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_20
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 2
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475ee8d0516ca1d90800000000000000
+      internalID: -7126165666636307084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_21
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 2
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ade6ca0f59e35d0800000000000000
+      internalID: -3080860234157204971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Griea v4_22
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 2
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 517558f596444c360800000000000000
+      internalID: 7188946124554983189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1335344b59ab0f04a90161892bef98a9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Player_Griea v4_0: 8191059255157184141
+      Player_Griea v4_1: -7280702349184897476
+      Player_Griea v4_10: -8331447260100502809
+      Player_Griea v4_11: 679279145797878908
+      Player_Griea v4_12: 5412090817533281613
+      Player_Griea v4_13: 1522858982523676307
+      Player_Griea v4_14: 1008679846024616892
+      Player_Griea v4_15: -8402644387604531454
+      Player_Griea v4_16: 3303211638001546320
+      Player_Griea v4_17: -522815763714499395
+      Player_Griea v4_18: 7017343891880332292
+      Player_Griea v4_19: 3482741326069510621
+      Player_Griea v4_2: 458216507792812160
+      Player_Griea v4_20: -7126165666636307084
+      Player_Griea v4_21: -3080860234157204971
+      Player_Griea v4_22: 7188946124554983189
+      Player_Griea v4_3: 4247751116488490964
+      Player_Griea v4_4: -2544223978717222355
+      Player_Griea v4_5: -1934320663851955079
+      Player_Griea v4_6: 3475408948463383491
+      Player_Griea v4_7: 6059215732295882405
+      Player_Griea v4_8: -3328885451439587522
+      Player_Griea v4_9: -7607301090645881534
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

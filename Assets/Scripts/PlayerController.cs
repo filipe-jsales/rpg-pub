@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
         var weaponPrefab = equippedWeaponObject.GetComponent<WeaponPrefab>();
         var animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = weaponPrefab.RuntimeAnimatorController;
+        // animator.runtimeAnimatorController = weaponPrefab.RuntimeAnimatorController;
         
     }
     

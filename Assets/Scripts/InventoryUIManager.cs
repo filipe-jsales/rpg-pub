@@ -139,7 +139,7 @@ public class InventoryUIManager : MonoBehaviour
         var slotComponent = Instantiate(inventorySlotPrefab, inventorySlotCanvas);
         slotComponent.name = componentName;
             
-        var slotImage = slotComponent.GetComponent<Image>();
+        var slotImage = slotComponent.transform.GetChild(0).GetComponent<Image>();
         slotImage.sprite = item.Sprite;
             
         var button = slotComponent.AddComponent<Button>();

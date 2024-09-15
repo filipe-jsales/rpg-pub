@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Abstractions
 {
-    public abstract class Armor : IRpgObject, IHasObtainedDate
+    public abstract class Armor : IRpgObject, IHasObtainedDate, IDescribable
     {
         public string Name { get; set; }
         public Sprite Sprite { set; get; }
@@ -63,6 +63,19 @@ namespace Abstractions
                 default:
                     return 0;
             }
+        }
+
+        public virtual object[] ToItemDescription()
+        {
+            return new object[]
+            {
+                Name, 
+                "Armor",
+                new [] { "Physical Resistance", PhysicalResistance.ToString()  },
+                new [] { "Poise", MaxPoise.ToString()  },
+                "Description",
+                Durability + "/" + MaxDurability
+            };
         }
 
         void IRpgObject.SetHealthFactor(float value)

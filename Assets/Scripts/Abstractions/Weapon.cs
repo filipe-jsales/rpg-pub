@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Abstractions
 {
-    public abstract class Weapon : IRpgObject, IHasObtainedDate
+    public abstract class Weapon : IRpgObject, IHasObtainedDate, IDescribable
     {
         public string Name { get; set; }
         public Sprite Sprite { get; set; }
@@ -28,6 +28,19 @@ namespace Abstractions
         public virtual float HandlePhysicalDamage(float baseDamage)
         {
             return Damage + baseDamage;
+        }
+        
+        public virtual object[] ToItemDescription()
+        {
+            return new object[]
+            {
+                Name, 
+                "Weapon",
+                new [] { "Damage", Damage.ToString()  },
+                new [] { "Poise damage", PoiseDamage.ToString()  },
+                "Description",
+                Durability + "/" + MaxDurability
+            };
         }
 
 

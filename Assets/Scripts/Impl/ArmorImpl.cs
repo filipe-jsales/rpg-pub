@@ -2,6 +2,7 @@
 using Abstractions;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace Impl
 {
@@ -18,7 +19,7 @@ namespace Impl
             Poise = poise;
             MaxPoise = maxPoise;
             // TODO: create actual implementation
-            ObtainedDate = DateTime.Now;
+            ObtainedDate = DateTime.Now + TimeSpan.FromMinutes(Random.Range(1, 10));
         }
     }
 }

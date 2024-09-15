@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Abstractions;
 using Impl;
 using Interfaces;
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public CharacterImpl Player => player.Character as CharacterImpl;
     public Character Character => player.Character;
-    public IRpgObject[] Items => player.Items;
+    public List<IRpgObject> Items => player.Items;
     
     private InventoryUIManager _inventoryUIManager;
 
@@ -109,5 +110,10 @@ public class GameManager : MonoBehaviour
     public void DestroyCurrentItemDescription()
     {
         _inventoryUIManager.DestroyCurrentItemDescription();
+    }
+
+    public void UpdateInventoryUI()
+    {
+        _inventoryUIManager.UpdateUI();
     }
 }

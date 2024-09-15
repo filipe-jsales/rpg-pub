@@ -5138,10 +5138,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7655276240340919615, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
-      propertyPath: healthTransform
-      value: 
-      objectReference: {fileID: 1617051698}
     - target: {fileID: 8668565491977607747, guid: ed1fd076f3d76c648a176540a12f1473, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.85
@@ -12293,11 +12289,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 0, y: 314.0512}
   m_Pivot: {x: 0.5, y: 0}
---- !u!224 &1617051698 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3260270985528961177, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
-  m_PrefabInstance: {fileID: 6785328453631878692}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1627427028
 PrefabInstance:
   m_ObjectHideFlags: 0

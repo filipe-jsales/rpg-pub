@@ -74,17 +74,20 @@ public class PlayerController : MonoBehaviour
         
     }
     
+    // TODO: change both below methods to GameManager probably
     public void SwitchToWeapon(WeaponPrefab prefab)
     {
         equippedWeaponObject = prefab.gameObject;
         GetComponent<Animator>().runtimeAnimatorController = prefab.RuntimeAnimatorController;
         player.Character.EquippedWeapon = prefab.gameObject.GetComponent<WeaponPrefab>().GetWeapon();
+        GameManager.instance.UpdateInventoryUI();
     }
     
     public void SwitchToArmor(ArmorPrefab prefab)
     {
         equippedArmorObject = prefab.gameObject;
         player.Character.EquippedArmor = prefab.gameObject.GetComponent<ArmorPrefab>().GetArmor();
+        GameManager.instance.UpdateInventoryUI();
     }
     
     private CharacterImpl GeneratePlayerFromParameters()
@@ -110,7 +113,7 @@ public class PlayerController : MonoBehaviour
         );
     }
     
-    private IRpgObject[] GetItems()
+    private List<IRpgObject> GetItems()
     {
         var items = new List<IRpgObject>();
 
@@ -123,8 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             items.Add(armor.GetComponent<ArmorPrefab>().GetArmor());
         }
-        // TODO: logic for armors
 
-        return items.ToArray();
+        return items;
     }
 }

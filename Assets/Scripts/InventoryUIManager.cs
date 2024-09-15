@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Abstractions;
+using Impl;
 using Interfaces;
 using TMPro;
 using UnityEngine;
@@ -29,12 +28,11 @@ public class InventoryUIManager : MonoBehaviour
     private GameManager _gameManager;
     
     private SortByItem _sortByItem = SortByItem.Obtained;
+    private GameObject _currentItemDescription;
 
     private void Start()
     {
-        _gameManager = GetComponent<GameManager>();
-        UpdateInventorySlotImages();
-        UpdateTextComponents();
+        _gameManager = GameManager.instance;
     }
 
     private void Update()
@@ -42,137 +40,29 @@ public class InventoryUIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             inventoryCanvas.gameObject.SetActive(!inventoryCanvas.gameObject.activeSelf);
-            UpdateInventorySlotImages();
-            UpdateTextComponents();
+            UpdateUI();
         }
         
     }
-    
+
     public void SortByWeapon()
     {
         _sortByItem = SortByItem.Weapon;
-        UpdateInventorySlotImages();
-        UpdateTextComponents();
+        UpdateUI();
     }
     
     public void SortByArmor()
     {
         _sortByItem = SortByItem.Armor;
-        UpdateInventorySlotImages();
-        UpdateTextComponents();
+        UpdateUI();
     }
     
     public void SortByObtainedDate()
     {
         _sortByItem = SortByItem.Obtained;
-        UpdateInventorySlotImages();
-        UpdateTextComponents();
+        UpdateUI();
     }
-
-    private IEnumerator UpdateInventoryUI()
-    {
-        UpdateInventorySlotImages();
-        UpdateTextComponents();
-        yield return new WaitForSeconds(2f);
-    }
-
-    private void UpdateInventorySlotImages()
-    {
-        var items = _gameManager.Items;
-        var character = _gameManager.Player;
-        var images = inventoryCanvas.GetComponentsInChildren<Image>();
-        var equippedItems = images.Where(i => i.gameObject.name.Contains("Equipped")).ToArray();
-        var existingSlots = inventorySlotCanvas.gameObject.GetComponentsInChildren<Image>();
-
-        foreach (var equipped in equippedItems)
-        {
-            switch (equipped.gameObject.name)
-            {
-                case "EquippedWeapon":
-                    equipped.sprite = character.EquippedWeapon.Sprite;
-                    break;
-                case "EquippedArmor":
-                    equipped.sprite = character.EquippedArmor.Sprite;
-                    break;
-            }
-        }
-
-        IRpgObject[] filteredItems = null;
-        switch (_sortByItem)
-        {
-            case SortByItem.Armor:
-                filteredItems = InventoryUtils.SortByClass(items, typeof(Armor));
-                break;
-            case SortByItem.Weapon:
-                filteredItems = InventoryUtils.SortByClass(items, typeof(Weapon));
-                break;
-            case SortByItem.Obtained:
-                filteredItems = InventoryUtils.SortByObtainedDate(items);
-                break;
-        }
-        
-        foreach (var item in items)
-        {
-            var componentName = "Inventory Slot - " + item.Name;
-            // TODO: se for tiver vários do mesmo item, essa lógica vai impedir de aparecer na UI
-            if (existingSlots.Length > 0)
-            {
-                try
-                {
-                    var image = existingSlots.First(i => i.gameObject.name == componentName);
-                    
-                    if (image != null)
-                    {
-                        if (_sortByItem == SortByItem.Obtained)
-                        {
-                            Destroy(image.gameObject);
-                        }
-                        else
-                        {
-                            if (filteredItems != null && filteredItems.Contains(item))
-                            {
-                                var existingSlotComponent = image.gameObject;
-                                existingSlotComponent.name = componentName;
-            
-                                var existingImage = existingSlotComponent.GetComponent<Image>();
-                                existingImage.sprite = item.Sprite;
-            
-                                var existingController = existingSlotComponent.GetComponent<InventorySlotController>();
-                                existingController.item = item;
-                            }
-                            else
-                            {
-                                Destroy(image.gameObject);
-                            }
-                            continue;
-                        }
-                        
-                        
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-            }
-            
-            
-            var slotComponent = Instantiate(inventorySlotPrefab, inventorySlotCanvas);
-            slotComponent.name = componentName;
-            
-            var slotImage = slotComponent.GetComponent<Image>();
-            slotImage.sprite = item.Sprite;
-            
-            var button = slotComponent.AddComponent<Button>();
-            button.onClick.AddListener(() => item.OnInteract.Invoke());
-            
-            var controller = slotComponent.GetComponent<InventorySlotController>();
-            controller.item = item;
-
-        }
-    }
-
-    private GameObject _currentItemDescription = null;
+    
     public void ShowItemDescription(IRpgObject item, Transform itemTransform)
     {
         DestroyCurrentItemDescription();
@@ -181,22 +71,115 @@ public class InventoryUIManager : MonoBehaviour
         var texts = _currentItemDescription.GetComponentsInChildren<TextMeshProUGUI>();
         SetUpDescriptionTexts(item, texts);
     }
-
-    private void SetUpDescriptionTexts(IRpgObject item, TextMeshProUGUI[] texts)
+    
+    public void DestroyCurrentItemDescription()
     {
-        object[] values = GenerateItemDescriptionValues(item);
-
-        for (var i = 0; i < texts.Length; i++)
+        if (_currentItemDescription != null)
         {
-            var textObject = texts[i];
+            Destroy(_currentItemDescription);
+        }
+    }
+    
+    public void UpdateUI()
+    {
+        UpdateSlotUI();
+        UpdatePlayerStatsUI();
+    }
+
+    private void UpdateSlotUI()
+    {
+        var items = _gameManager.Items;
+        var character = _gameManager.Player;
+        var slots = inventoryCanvas.GetComponentsInChildren<Image>();
+        var equippedItemSlots
+            = slots.Where(i => i.gameObject.name.Contains("Equipped")).ToList();
+        var existingSlots = inventorySlotCanvas.gameObject.GetComponentsInChildren<Image>().ToList();
+
+        SetUpEquippedItems(equippedItemSlots, character);
+        var filteredItems = InventoryUtils.SortItems(items, _sortByItem);
+        
+        if (_sortByItem == SortByItem.Obtained)
+        {
+            filteredItems.ForEach(item =>
+            {
+                existingSlots.ForEach(c => Destroy(c.gameObject));
+                InstantiateSlot(item);
+            });
+            return;
+        }
+        
+        foreach (var item in items)
+        {
+            if (existingSlots.Count <= 0)
+            {
+                InstantiateSlot(item);
+                continue;
+            }
+            
+            var componentName = "Inventory Slot - " + item.Name;
+            var slot = existingSlots.FirstOrDefault(i => i.gameObject.name == componentName);
+            if (slot == null)
+            {
+                InstantiateSlot(item);
+                continue;
+            }
+            
+            existingSlots.Remove(slot);
+
+            if (!filteredItems.Contains(item))
+            {
+                Destroy(slot.gameObject);
+            }
+        }
+    }
+
+    private void InstantiateSlot(IRpgObject item)
+    {
+        var componentName = "Inventory Slot - " + item.Name;
+        var slotComponent = Instantiate(inventorySlotPrefab, inventorySlotCanvas);
+        slotComponent.name = componentName;
+            
+        var slotImage = slotComponent.GetComponent<Image>();
+        slotImage.sprite = item.Sprite;
+            
+        var button = slotComponent.AddComponent<Button>();
+        button.onClick.AddListener(() => item.OnInteract.Invoke());
+            
+        var controller = slotComponent.GetComponent<InventorySlotController>();
+        controller.item = item;
+    }
+
+    private void SetUpEquippedItems(List<Image> equippedItemSlots, CharacterImpl character)
+    {
+        foreach (var slot in equippedItemSlots)
+        {
+            switch (slot.gameObject.name)
+            {
+                case "EquippedWeapon":
+                    slot.sprite = character.EquippedWeapon.Sprite;
+                    break;
+                case "EquippedArmor":
+                    slot.sprite = character.EquippedArmor.Sprite;
+                    break;
+            }
+        }
+    }
+
+    private void SetUpDescriptionTexts(IRpgObject item, TextMeshProUGUI[] textObjects)
+    {
+        var values = InventoryUtils.GenerateItemDescriptionValues(item);
+
+        for (var i = 0; i < textObjects.Length; i++)
+        {
+            var textObject = textObjects[i];
             var currentValue = values[i];
-            if (currentValue is string[])
+            if (currentValue is string[] valueList)
             {
                 var split = textObject.text.Split(":");
                 var completeText = "";
                 for (int j = 0; j < split.Length; j++)
                 {
-                    var currentReplace = (currentValue as string[])[j];
+                    var currentReplace = valueList[j];
                     if (j != split.Length - 1) currentReplace += ": ";
                     completeText += split[j].Trim().Replace("replaceable", currentReplace);
                 }
@@ -207,52 +190,11 @@ public class InventoryUIManager : MonoBehaviour
                 textObject.text = textObject.text.Replace("replaceable", currentValue as string);
             }
             
-            texts[i] = textObject;
+            textObjects[i] = textObject;
         }
     }
 
-    private object[] GenerateItemDescriptionValues(IRpgObject item)
-    {
-        object[] values;
-        if (item.GetType().IsSubclassOf(typeof(Weapon)))
-        {
-            var itemConverted = item as Weapon;
-            values = new object[]
-            {
-                itemConverted.Name, 
-                "Weapon",
-                new string[] { "Damage", itemConverted.Damage.ToString()  },
-                new string[] { "Poise damage", itemConverted.PoiseDamage.ToString()  },
-                "Description",
-                itemConverted.Durability + "/" + itemConverted.MaxDurability
-            };
-        }
-        else
-        {
-            var itemConverted = item as Armor;
-            values = new object[]
-            {
-                itemConverted.Name, 
-                "Armor",
-                new string[] { "Physical Resistance", itemConverted.PhysicalResistance.ToString()  },
-                new string[] { "Poise", itemConverted.MaxPoise.ToString()  },
-                "Description",
-                itemConverted.Durability + "/" + itemConverted.MaxDurability
-            };
-        }
-
-        return values;
-    }
-
-    public void DestroyCurrentItemDescription()
-    {
-        if (_currentItemDescription != null)
-        {
-            Destroy(_currentItemDescription);
-        }
-    }
-
-    private void UpdateTextComponents()
+    private void UpdatePlayerStatsUI()
     {
         var character = _gameManager.Player;
         var textComponents = inventoryCanvas.GetComponentsInChildren<TextMeshProUGUI>();

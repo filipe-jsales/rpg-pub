@@ -9,6 +9,6 @@ namespace ScriptableObjects
     public class CharacterScriptableObject : ScriptableObject
     {
         public Character Character;
-        public IRpgObject[] Items;
+        public List<IRpgObject> Items;
     }
 }

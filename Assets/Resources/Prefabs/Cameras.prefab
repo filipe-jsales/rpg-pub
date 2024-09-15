@@ -176,13 +176,17 @@ MonoBehaviour:
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 11400000, guid: bd50ad19848588f4b8f7d43d10193041, type: 2}
   m_ParentHash:
-  - m_Hash: -52447470
+  - m_Hash: 1066255057
     m_ParentHash: 756556552
-  - m_Hash: 1817733782
+  - m_Hash: 1995653997
     m_ParentHash: 756556552
-  - m_Hash: 61537632
+  - m_Hash: -168560870
     m_ParentHash: 756556552
-  - m_Hash: -729002075
+  - m_Hash: 1796518471
+    m_ParentHash: 756556552
+  - m_Hash: 74971515
+    m_ParentHash: 756556552
+  - m_Hash: -1754828650
     m_ParentHash: 756556552
 --- !u!1 &5222780634709640990
 GameObject:
@@ -724,7 +728,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.2
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

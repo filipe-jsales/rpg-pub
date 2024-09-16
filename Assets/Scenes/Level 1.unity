@@ -12625,16 +12625,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926446144060874849, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926446144060874849, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926446144060874849, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1441509265748949727, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1441509265748949727, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441509265748949727, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
-      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2038805141989915346, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
@@ -12681,9 +12689,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7954831631894178741, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
-      propertyPath: m_Value
-      value: 1
+    - target: {fileID: 9109551562485268989, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109551562485268989, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109551562485268989, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109551562485268989, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9109551562485268989, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
       propertyPath: m_AnchoredPosition.y

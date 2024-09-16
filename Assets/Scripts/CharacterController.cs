@@ -333,7 +333,7 @@ public class CharacterController : MonoBehaviour
 
     private void HandlePoise(int direction)
     {
-        if (player.Character.Poise > 0) return;
+        if (player.Character.getTotalCurrentPoise() > 0) return;
         player.Character.HandleBrokenPoise();
         _controlsEnabled = false;
         _animator.SetBool("isDashing", true);

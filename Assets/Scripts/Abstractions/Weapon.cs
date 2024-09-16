@@ -17,7 +17,7 @@ namespace Abstractions
         public float Durability { get; set; }
         public float MaxDurability { get; set; }
         public float Damage { get; set; }
-        public int PoiseDamage { get; set; }
+        public float PoiseDamage { get; set; }
 
         public virtual void HandleDurabilityDamage(Armor armor)
         {
@@ -54,12 +54,12 @@ namespace Abstractions
             MaxDurability = value;
         }
 
-        void IRpgObject.SetPoiseFactor(int value)
+        void IRpgObject.SetPoiseFactor(float value)
         {
             PoiseDamage = value;
         }
 
-        void IRpgObject.SetMaxPoiseFactor(int value)
+        void IRpgObject.SetMaxPoiseFactor(float value)
         {
             throw new System.NotImplementedException();
         }

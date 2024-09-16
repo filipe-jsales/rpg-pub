@@ -17,8 +17,8 @@ namespace Abstractions
         public float Durability { get; set; }
         public float MaxDurability { get; set; }
         public float PhysicalResistance { get; set; }
-        public int Poise { get; set; }
-        public int MaxPoise { get; set; }
+        public float Poise { get; set; }
+        public float MaxPoise { get; set; }
 
         public virtual void HandleDurabilityDamage(float damage)
         {
@@ -88,12 +88,12 @@ namespace Abstractions
             MaxDurability = value;
         }
 
-        void IRpgObject.SetPoiseFactor(int value)
+        void IRpgObject.SetPoiseFactor(float value)
         {
             Poise = value;
         }
 
-        void IRpgObject.SetMaxPoiseFactor(int value)
+        void IRpgObject.SetMaxPoiseFactor(float value)
         {
             MaxPoise = value;
         }

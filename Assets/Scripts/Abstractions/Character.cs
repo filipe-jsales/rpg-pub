@@ -15,8 +15,8 @@ namespace Abstractions
         public float BaseDamage { get; set; }
         public float Health { get; set; }
         public float MaxHealth { get; set; }
-        public int Poise { get; set; }
-        public int MaxPoise { get; set; }
+        public float Poise { get; set; }
+        public float MaxPoise { get; set; }
         public float Mana { get; set; }
         public float MaxMana { get; set; }
         public string ElementAffinity { get; set; }
@@ -57,9 +57,14 @@ namespace Abstractions
             Health = MaxHealth;
         }
 
-        public virtual int getTotalCurrentPoise()
+        public virtual float getTotalCurrentPoise()
         {
             return Poise + EquippedArmor.Poise;
+        }
+        
+        public virtual float getTotalMaxPoise()
+        {
+            return MaxPoise + EquippedArmor.MaxPoise;
         }
 
         void IRpgObject.SetHealthFactor(float value)
@@ -72,12 +77,12 @@ namespace Abstractions
             MaxHealth = value;
         }
 
-        void IRpgObject.SetPoiseFactor(int value)
+        void IRpgObject.SetPoiseFactor(float value)
         {
             Poise = value;
         }
 
-        void IRpgObject.SetMaxPoiseFactor(int value)
+        void IRpgObject.SetMaxPoiseFactor(float value)
         {
             MaxPoise = value;
         }

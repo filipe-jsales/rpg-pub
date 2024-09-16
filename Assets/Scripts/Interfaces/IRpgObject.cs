@@ -15,8 +15,8 @@ namespace Interfaces
         //Different name per implementation attributes
         protected void SetHealthFactor(float value);
         protected void SetMaxHealthFactor(float value);
-        protected void SetPoiseFactor(int value);
-        protected void SetMaxPoiseFactor(int value);
+        protected void SetPoiseFactor(float value);
+        protected void SetMaxPoiseFactor(float value);
         protected void SetDamageFactor(float value);
     }
 }

@@ -12564,10 +12564,6 @@ PrefabInstance:
       propertyPath: m_AnimatedTarget
       value: 
       objectReference: {fileID: 415255227}
-    - target: {fileID: 4940218281060209606, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
-      propertyPath: m_ChildCameras.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5868495219936132562, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
       propertyPath: m_Name
       value: Cameras
@@ -12629,6 +12625,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1441509265748949727, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441509265748949727, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441509265748949727, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2038805141989915346, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.45252535
@@ -12672,6 +12680,14 @@ PrefabInstance:
     - target: {fileID: 4927378664851483739, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954831631894178741, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109551562485268989, guid: c6fbadc26e797c043b3f15d0173f1d24, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

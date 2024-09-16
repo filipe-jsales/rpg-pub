@@ -273,40 +273,55 @@ public class CharacterController : MonoBehaviour
     {
         if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) || !_controlsEnabled)
         {
-            HandleDeath();
+            HandleDeath(1);
         }
         if (_playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")) || !_controlsEnabled)
         {
+            Vector2 triggerCenter = GetComponent<Collider2D>().bounds.center;
+            Vector2 colliderCenter = other.bounds.center;
+
+            Vector2 difference = colliderCenter - triggerCenter;
+            var direction = difference.x < 0 ? 1 : -1;
+            
             if (_isInvulnerable || !_controlsEnabled) return;
             var enemyCharacter = other.gameObject.GetComponent<EnemyController>().EnemyCharacter;
             player.Character.OnHitTaken(enemyCharacter);
+            
             if (player.Character.Health <= 0)
             {
-                HandleDeath();
+                HandleDeath(direction);
             }
             else
             {
-                StartCoroutine(OnDamageTaken());
+                StartCoroutine(OnDamageTaken(direction));
             }
         }
     }
 
-    private void HandleDeath()
+    private void HandleDeath(int direction)
     {
         if (!_isAlive || !_controlsEnabled) return;
         _isAlive = false;
         _isDying = true;
         _animator.SetTrigger("isDying");
+        deathKnockback.x *= direction;
         _playerRigidBody.velocity = deathKnockback;
         FindAnyObjectByType<GameManager>().ProcessPlayerDeath();
         GetComponent<PlayerController>().enabled = false;
     }
 
-    private IEnumerator OnDamageTaken()
+    private IEnumerator OnDamageTaken(int direction)
     {
         if (_isDying || !_controlsEnabled) yield break;
         _isInvulnerable = true;
         float elapsed = 0f;
+        if (player.Character.Poise <= 0)
+        {
+            _controlsEnabled = false;
+            _animator.SetBool("isDashing", true);
+            _playerRigidBody.velocity = deathKnockback * direction;
+        }
+        Debug.Log(player.Character.Poise);
         while (elapsed < _playerController.immortalityDuration)
         {
             _spriteRenderer.enabled = !_spriteRenderer.enabled;
@@ -314,6 +329,10 @@ public class CharacterController : MonoBehaviour
             elapsed += _playerController.blinkInterval;
         }
 
+        _animator.SetBool("isDashing", false);
+        _playerRigidBody.velocity = new Vector2(0, 0);
+        
+        _controlsEnabled = true;
         _spriteRenderer.enabled = true;
         _isInvulnerable = false;
     }

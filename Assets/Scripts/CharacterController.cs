@@ -315,13 +315,7 @@ public class CharacterController : MonoBehaviour
         if (_isDying || !_controlsEnabled) yield break;
         _isInvulnerable = true;
         float elapsed = 0f;
-        if (player.Character.Poise <= 0)
-        {
-            _controlsEnabled = false;
-            _animator.SetBool("isDashing", true);
-            _playerRigidBody.velocity = deathKnockback * direction;
-        }
-        Debug.Log(player.Character.Poise);
+        HandlePoise(direction);
         while (elapsed < _playerController.immortalityDuration)
         {
             _spriteRenderer.enabled = !_spriteRenderer.enabled;
@@ -330,12 +324,23 @@ public class CharacterController : MonoBehaviour
         }
 
         _animator.SetBool("isDashing", false);
-        _playerRigidBody.velocity = new Vector2(0, 0);
+        _moveInput.x = 0;
         
         _controlsEnabled = true;
         _spriteRenderer.enabled = true;
         _isInvulnerable = false;
     }
+
+    private void HandlePoise(int direction)
+    {
+        if (player.Character.Poise > 0) return;
+        player.Character.HandleBrokenPoise();
+        _controlsEnabled = false;
+        _animator.SetBool("isDashing", true);
+        deathKnockback.x *= direction;
+        _playerRigidBody.velocity = deathKnockback;
+    }
+
     private bool CheckIfPlayerIsOnGround()
     {
         return _playerFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("SolidObjects", "Climbing", "Hazards"));

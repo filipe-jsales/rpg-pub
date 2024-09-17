@@ -12540,10 +12540,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 425997399175678001, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 415255229}
     - target: {fileID: 474186491443608409, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -12552,14 +12548,14 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1221942065}
-    - target: {fileID: 3548635261598587352, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 415255229}
     - target: {fileID: 4042992942658842290, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1221942065}
+    - target: {fileID: 4940218281060209606, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 415255229}
     - target: {fileID: 4940218281060209606, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
       propertyPath: m_AnimatedTarget
       value: 
@@ -12608,10 +12604,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8328526465798833737, guid: 06f73ca6f94ad2a498934a74d9a0bcce, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 415255229}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

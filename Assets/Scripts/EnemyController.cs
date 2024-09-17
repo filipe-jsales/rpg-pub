@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
     private CapsuleCollider2D _playerBodyCollider;
     
     public EnemyCharacter EnemyCharacter;
-    private EnemyAnimationController _animationController;
+    private EnemyActionController _actionController;
     private bool _isPlayerDetected = false;
 
     [SerializeField]
@@ -55,13 +55,13 @@ public class EnemyController : MonoBehaviour
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _playerBodyCollider = GetComponent<CapsuleCollider2D>();
-        _animationController = GetComponent<EnemyAnimationController>();
+        _actionController = GetComponent<EnemyActionController>();
 
     }
     
     void FixedUpdate()
     {
-        _animationController.UseRunAnimation("", false);
+        _actionController.UseRunAnimation(false);
         var hit = Physics2D.Raycast(transform.position, -transform.right, 0.1f, solidObjectsLayer);
         DetectPlayer();
 
@@ -113,7 +113,7 @@ public class EnemyController : MonoBehaviour
         }
 
         _rigidbody2d.velocity = new Vector2(Mathf.Sign(direction) * moveSpeed, _rigidbody2d.velocity.y);
-        _animationController.UseRunAnimation("", true);
+        _actionController.UseRunAnimation(true);
     }
 
     private void BatChasingPlayer(Transform playerTransform)
@@ -132,7 +132,7 @@ public class EnemyController : MonoBehaviour
 
         _rigidbody2d.velocity = new Vector2(Mathf.Sign(directionX) * moveSpeed, Mathf.Sign(directionY) * moveSpeed);
 
-        _animationController.UseRunAnimation("", true);
+        _actionController.UseRunAnimation(true);
 
         Debug.Log($"Bat chasing player. Horizontal: {directionX}, Vertical: {directionY}");
     }
@@ -155,7 +155,7 @@ public class EnemyController : MonoBehaviour
     private void GooberIdling()
     {
         _rigidbody2d.velocity = new Vector2(0f, _rigidbody2d.velocity.y);
-        _animationController.UseRunAnimation("", false);
+        _actionController.UseRunAnimation(false);
     }
 
     private void BatIdling()
@@ -165,7 +165,7 @@ public class EnemyController : MonoBehaviour
 
     private void DetectCeiling()
     {
-        // Lança um Raycast para cima
+        // Lanï¿½a um Raycast para cima
         RaycastHit2D ceilingHit = Physics2D.Raycast(transform.position, Vector2.up, Mathf.Infinity, solidObjectsLayer);
 
         Debug.DrawLine(transform.position, transform.position + new Vector3(0, 1, 0), Color.red);
@@ -173,21 +173,21 @@ public class EnemyController : MonoBehaviour
         // Se o teto foi encontrado
         if (ceilingHit.collider != null)
         {
-            // Calcula a distância vertical até o teto
+            // Calcula a distï¿½ncia vertical atï¿½ o teto
             float distanceToCeiling = ceilingHit.point.y - transform.position.y;
 
-            // Se estamos próximos o suficiente do teto, o morcego para de subir e fica ocioso
+            // Se estamos prï¿½ximos o suficiente do teto, o morcego para de subir e fica ocioso
             if (distanceToCeiling < 0.2f)
             {
                 _rigidbody2d.velocity = Vector2.zero; // Para o movimento
-                _animationController.UseRunAnimation("", false); // Volta à animação ociosa
+                _actionController.UseRunAnimation(false); // Volta ï¿½ animaï¿½ï¿½o ociosa
                 Debug.Log("Bat is idling on the ceiling");
             }
             else
             {
-                // Se ainda não alcançou o teto, move o morcego para cima
-                _rigidbody2d.velocity = new Vector2(0f, Mathf.Abs(moveSpeed)); // Certifica que moveSpeed é positivo
-                _animationController.UseRunAnimation("", true); // Continua com a animação de voar
+                // Se ainda nï¿½o alcanï¿½ou o teto, move o morcego para cima
+                _rigidbody2d.velocity = new Vector2(0f, Mathf.Abs(moveSpeed)); // Certifica que moveSpeed ï¿½ positivo
+                _actionController.UseRunAnimation(true); // Continua com a animaï¿½ï¿½o de voar
                 Debug.Log("Bat is moving towards the ceiling");
             }
         }

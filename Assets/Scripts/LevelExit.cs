@@ -29,11 +29,13 @@ public class LevelExit : MonoBehaviour
         }
         else
         {
+            EnemyActionManager.Instance.Reset();
             SceneManager.LoadScene(nextSceneIndex);
         }
     }
     private void RestartLevel()
     {
+        EnemyActionManager.Instance.Reset();
         SceneManager.LoadScene(0);
     }
 

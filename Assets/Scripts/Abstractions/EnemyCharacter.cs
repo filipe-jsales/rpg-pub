@@ -2,8 +2,9 @@
 
 namespace Abstractions
 {
-    public abstract class EnemyCharacter: Character, IUnityAnimations
+    public abstract class EnemyCharacter: Character, IEnemyAction
     {
+        // TODO: create enum and isIdling should be isIdle
         private const string IsRunning = "isRunning";
         private const string IsIdling = "isIdling";
         
@@ -14,7 +15,7 @@ namespace Abstractions
 
         public virtual void UseRunAnimation(string objectName, bool isActive)
         {
-            AnimationManager.Instance.UseAnimator(objectName, (animator) =>
+            EnemyActionManager.Instance.UseAnimator(objectName, (animator) =>
             {
                 animator.SetBool(IsRunning, isActive);
                 animator.SetBool(IsIdling, !isActive);
@@ -23,7 +24,7 @@ namespace Abstractions
 
         public virtual void UseIdleAnimation(string objectName, bool isActive)
         {
-            AnimationManager.Instance.UseAnimator(objectName, (animator) =>
+            EnemyActionManager.Instance.UseAnimator(objectName, (animator) =>
             {
                 animator.SetBool(IsIdling, isActive);
                 animator.SetBool(IsRunning, !isActive);
